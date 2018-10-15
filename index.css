@@ -1,0 +1,70 @@
+* {font-family: Consolas;text-decoration: none;}
+
+@keyframes zoom_welcome {
+    0% {
+        transform: scale(1.2,1.2);
+    }
+    50% {
+        transform: scale(1.4,1.4);
+    }
+    100% {
+        transform: scale(1.2,1.2);
+    }
+}
+
+@keyframes glow {
+    to {
+        text-shadow: 0 0 15px #579ff1;
+    }
+}
+
+input[type="button"] {
+    position: relative;
+    border: 0;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    min-width: 100px;
+    min-height: 40px;
+    /* top: 10%; */
+    width: 10vw;
+    height: 8vh;
+    max-height: 80px;
+    font-size: 1.3vw;
+    background-color: #579ff1;
+}
+
+*:focus {outline:none;}
+
+.confirm_selection {
+    font-size: 24vh;
+    font-weight: bold;
+    color: black;
+    animation: glow 1s infinite alternate;
+}
+
+body {
+    scroll-snap-type: y mandatory;
+    text-align: center;
+    background-color: black;
+}
+
+.welcome {
+    display: block;
+    /* background-color: brown; */
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    top: 10vh;
+    text-align: center;
+}
+
+.welcome2 {
+    text-align: center;
+    /* background-color: yellow; */
+    position: relative;
+    top: 35%;
+    margin: auto;
+    width: 55%;
+    animation: zoom_welcome 4s;
+}
