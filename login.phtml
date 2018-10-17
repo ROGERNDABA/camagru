@@ -1,3 +1,19 @@
+<?php
+/*
+ *
+ *    File created by Roger Ndaba
+ *    Project: camagru
+ *    File: login.phtml
+ *
+ */
+
+    include("connect.php");
+
+    if (isset($_GET['ok']) && $_GET['ok'] == 1) {
+        header("Location: home.html");
+        session_start();
+    }
+?>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -14,14 +30,15 @@
                     <form id='index' action='login.php' method='post' accept-charset='UTF-8' autocomplete="off">
                        <span class="error_msg">
                             <?php
+                            $bg = #ffffff;
                             $msg = base64_decode($_GET['msg']);
                             if(isset($_GET['msg']))
                                 echo $msg;
                             unset($_GET['msg']);
                             ?>
                        </span>
-                       <input type='hidden' name='submitted' id='submitted' value='1'/>
-                       <input type='text' name='login' id='login'  maxlength="500" placeholder="Username or Email" autocomplete="false"/><br>
+                       <input type='hidden' name='submitted' id='submitted' value='1' style="background-color:<?php echo $bg?>"/>
+                       <input type='text' name='login' id='login'  maxlength="500" placeholder="Username or Email"/><br>
                        <input type='password' name='passwd' id='passwd' maxlength="50" placeholder="Password"/><br>
                        <input type='submit' name='submit' value='Sign in'/>      
                     </form>

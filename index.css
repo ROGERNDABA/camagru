@@ -37,7 +37,7 @@ input[type="button"] {
 *:focus {outline:none;}
 
 .confirm_selection {
-    font-size: 24vh;
+    font-size: calc(1vw + 1vh + .5vmin);
     font-weight: bold;
     color: black;
     animation: glow 1s infinite alternate;
@@ -67,4 +67,11 @@ body {
     margin: auto;
     width: 55%;
     animation: zoom_welcome 4s;
+}
+
+@media only screen and (max-width: 950px) {
+
+    .confirm_selection {
+        font-size: 4vh;
+    }
 }

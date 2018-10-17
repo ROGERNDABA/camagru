@@ -6,35 +6,37 @@
  *    File: login.php
  *
  */
-include ("./check_index.php");
+include ("connect.php");
 
 $q = "SELECT username, passwd FROM passwords";
-$conn = OpenCon();
+$conn = conOpen();
 $re = $conn->query($q);
-if(!$_POST["login"] || !$_POST["passwd"])
+$username = $_POST['login'];
+$passwd = $_POST['passwd'];
+
+if(!$username || !$passwd)
 {
    $msg = "Blank field for Username or Password";
    $msgEncoded = base64_encode($msg);
-   header("location:login.phtml?msg=".$msgEncoded);
+   header("location:login.phtml?msg=".$msgEncoded."&usr=".$username);
+   exit();
 }
-else if ($_POST['login'] && $_POST['passwd'])
+else
 {
-   $msg = "No such Username or Password";
-   $msgEncoded = base64_encode($msg);
-   while($row = $re->fetch_assoc()) {
-        if (!strcmp($_POST['login'], "adminunlock") && !strcmp($_POST['passwd'], "dontunlock"))
-        {
-            session_start();
-            header("location: admin_login.php");
-            exit();
+    $msg = "No such Username or Password";
+    $msgEncoded = base64_encode($msg);
+    while($row = $re->fetch(PDO::FETCH_ASSOC)) {
+        if (!strcmp($username, "adminunlock") && !strcmp($passwd, "dontunlock")) {
+                session_start();
+                header("location: admin_login.php");
+                exit();
         }
-        else if (!strcmp($row['username'], $_POST['login']) && !strcmp($row['passwd'], $_POST['passwd']))
-        {
+        else if (!strcmp($row['username'], $username) && !strcmp($row['passwd'], $passwd)) {
             session_start();
-            header("Location: login.php");
+            header("Location: home.php");
             exit();
         }
     }
-    header("location:login.phtml?msg=".$msgEncoded." ".$row['username']);
+    header("location:login.phtml?msg=".$msgEncoded);
 }
 ?>

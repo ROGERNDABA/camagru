@@ -1,23 +1,23 @@
 * {font-family: Consolas;text-decoration: none;}
 *:focus {outline:none;}
 
-body {
-    background-color: black;
-}
+/* body { */
+    /* background-color: black; */
+/* } */
 .login_class
 {
-    /* background-color: yellow; */
+    background-color: yellow;
     position: relative;
     /* vertical-align: middle; */
     top: 25vh;
     align-self: center;
     width: 100%;
-    height: 400px;
+    height: 20%;
 }
 
 .login_container
 {
-    /* background-color: brown; */
+    background-color: brown;
     position: relative;
     left: 36vw;
     height: 100%;
