@@ -88,5 +88,7 @@
     $re = $conn->query($q);
     $q = "INSERT INTO `passwords` (`username`, `passwd`, `usr_exists`) VALUES (\"$username\", \"$passwd\", \"0\")";
     $re = $conn->query($q);
+    $re = null;
+    $conn = null;
     header('Location: confirm_email.php?confirm='.base64_encode($email."1"));
     ?>

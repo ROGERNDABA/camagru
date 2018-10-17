@@ -1,0 +1,103 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+  background-color: antiquewhite;
+}
+body, button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: small;
+}
+    
+.playground {
+  position: fixed;
+  top: 0;
+  left: 340px;
+  bottom: 0;
+  right: 0;
+  border: 8px solid black;
+}
+    
+.margin {
+  margin: 10px;
+  width: 300px;
+}
+    
+#filterButtons {
+  width: 300px;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+li {
+  margin-left: -20px;
+}
+    
+button {
+  padding: 3px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  color: white;
+  background-color: #6496c8;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 1px 5px #27496d;
+}
+button:hover,
+button.hover {
+  background-color: #417cb8
+}
+button:active,
+button.active {
+  background-color: #417cb8;
+  box-shadow: 0 3px #27496d;
+  transform: translateY(2px) translateX(1px);
+}    
+    
+button:disabled,
+button.disabled {
+  background-color: darkgrey;
+  box-shadow: 0 3px #27496d;
+  transform: translateY(2px) translateX(1px);
+}
+.photo {
+  box-shadow: 3px 3px 3px #888888;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 30px;
+  padding: 12px;
+  background-color: white;
+  cursor: move;   
+  transition:all 0.5s;
+}
+    </style>
+</head>
+<body>
+
+        <video id="video" width="320" height="240" class="margin"></video>
+        <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
+        <div id="stack" class="playground" style="background-color: darkgray;">
+        </div>
+        <div class="margin">
+          <p>
+            <div id="filterButtons"></div>
+          </p>
+          <ol type="1">
+            <li><button id="startButton">Start webcam</button></li> 
+            <li><button id="photoButton">Take photo</button></li>
+            <li id="beCreative">Experiment with different filters. Take more photos. Drag them around.</li>
+          </ol>
+      
+          <p>
+          <a href="https://donkarlssonsan.github.io/Ost/">The GitHub hosted version</a> lets you post the photo collage to Facebook!
+          </p>
+        </div>
+      
+    <script src="video2.js"></script>
+</body>
+</html>

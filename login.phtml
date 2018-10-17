@@ -9,10 +9,13 @@
 
     include("connect.php");
 
-    if (isset($_GET['ok']) && $_GET['ok'] == 1) {
-        header("Location: home.html");
-        session_start();
-    }
+    // if (isset($_GET['ok']) && $_GET['ok'] == 1) {
+    //     $conn = conOpen();
+
+    //     $q = "UPDATE "
+    //     header("Location: home.html");
+    //     session_start();
+    // }
 ?>
 <html lang="en">
     <head>
@@ -20,7 +23,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
-        <link rel="stylesheet" href="./login.css">
+        <link rel="stylesheet" href="login.css">
         <title>Document</title>
     </head>
     <body>

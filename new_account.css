@@ -2,7 +2,7 @@ body { background-color: black}
 
 label {
     position: relative;
-    left: 65px;
+    left: 3vw;
     font-family: Consolas;
     color: #579ff1;
     font-size: calc(17px + .8vw);
@@ -16,13 +16,13 @@ input {
     background-color:  black;
     color: #579ff1;
     font-display: Consolas;
-    font-size: 25px;
+    font-size: calc(1vw + 1vmin);
     padding-left: 10px;
     border: .8px solid #579ff1;
     text-align: center;
     border-radius: 10px;
     position: relative;
-    left: 65px;
+    left: 3vw;
     display: block;
     min-width: 200px;
     min-height: 40px;
@@ -49,8 +49,9 @@ input[type=submit] {
     color: black;
 }
 .info {
+    /* background-color: yellow; */
     height: 100%;
-    width: 600px;
+    width: 40%;
     position: relative;
     left: 36vw;
 }
@@ -63,4 +64,25 @@ input[type=submit] {
     font-size: 18px;
     color: red;
     left: 64px;
+}
+
+@media only screen and (max-width: 750px) {
+    label {
+        left: 4vw;
+    }
+
+    input {
+        min-height: 26px;
+        max-height: 22px;
+        font-size: 14px;
+    }
+
+    input[type=submit] {
+        font-size: 15px;
+    }
+    .info {
+        top: -25px;
+        left: 22vw;
+        height: 10%;
+    }
 }

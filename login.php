@@ -32,7 +32,11 @@ else
                 exit();
         }
         else if (!strcmp($row['username'], $username) && !strcmp($row['passwd'], $passwd)) {
+            if (isset($_SESSION))
+                session_destroy();
+            session_id($username);
             session_start();
+            $_SESSION['username'] = $username;
             header("Location: home.php");
             exit();
         }

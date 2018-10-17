@@ -33,4 +33,5 @@
      } else {
         echo "Message has been sent";
      }
+     header("location: login.phtml");
 ?>

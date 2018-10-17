@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="home.css">
+    <title>Document</title>
+</head>
+<body onload="init();">
+    <div class="wrapper">
+        <header>
+            <div class="ico">
+
+            </div>
+        </header>
+        <aside> 
+            <script src="video.js"></script>
+            <div class="row">
+                <div class="column left">
+                    <video autoplay class="vid"></video>
+                    <div class="buttons">
+                        <div id="c1" onclick="startWebcam()"></div>
+                        <div id="c2" onclick="snapshot();"></div>
+                        <div id="c3" onclick="stopWebcam();"></div> 
+                    </div>
+                    <!-- <button onclick="startWebcam();">Start WebCam</button>
+                    <button onclick="stopWebcam();">Stop WebCam</button> 
+                    <button onclick="snapshot();">Take Snapshot</button>  -->
+                    <!-- <div class="pl"></div> -->
+                </div>
+                <div class="column right">
+                </div>
+                <div class="preview">
+                        <canvas  id="myCanvas"></canvas>
+                        <div class="filters">
+                            <button id="none" onclick="proccess_func(this)" class="filt_butt"> None</button>
+                            <button id="grayscale" onclick="proccess_func(this)" class="filt_butt"> Grayscale</button>
+                            <button id="sepia" onclick="proccess_func(this)" class="filt_butt">Sepia</button>
+                            <button id="" onclick="proccess_func()" class="filt_butt"> Sepia</button>
+                            <button id="" onclick="proccess_func()" class="filt_butt"> Sepia</button>
+                            <button id="" onclick="proccess_func()" class="filt_butt"> Sepia</button>
+                            <button id="" onclick="proccess_func()" class="filt_butt"> Sepia</button>
+                            <button id="" onclick="proccess_func()" class="filt_butt"> Sepia</button>
+                            <button id="" onclick="proccess_func()" class="filt_butt"> Sepia</button>
+                            <button id="" onclick="proccess_func()" class="filt_butt"> Sepia</button>
+                        </div>
+                </div>
+            </div>
+        </aside>
+        <article>
+            sfsdfsdf
+        </article>
+        <footer>Footer</footer>
+      </div>
+</body>
+</html>

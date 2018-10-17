@@ -9,6 +9,8 @@
     session_start();
     echo "<pre>";
     print_r($_SESSION);
+    echo session_id();
     echo "</pre>";
+    header("Location: home.html");
 
 ?>
