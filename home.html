@@ -4,6 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="filters.css">
+
     <title>Document</title>
 </head>
 <body onload="init();">
@@ -13,44 +15,62 @@
 
             </div>
         </header>
+
+
         <aside> 
             <script src="video.js"></script>
             <div class="row">
-                <div class="column left">
-                    <video autoplay class="vid"></video>
-                    <div class="buttons">
-                        <div id="c1" onclick="startWebcam()"></div>
-                        <div id="c2" onclick="snapshot();"></div>
-                        <div id="c3" onclick="stopWebcam();"></div> 
-                    </div>
-                    <!-- <button onclick="startWebcam();">Start WebCam</button>
-                    <button onclick="stopWebcam();">Stop WebCam</button> 
-                    <button onclick="snapshot();">Take Snapshot</button>  -->
-                    <!-- <div class="pl"></div> -->
-                </div>
-                <div class="column right">
-                </div>
-                <div class="preview">
-                        <canvas  id="myCanvas"></canvas>
-                        <div class="filters">
-                            <button id="none" onclick="proccess_func(this)" class="filt_butt"> None</button>
-                            <button id="grayscale" onclick="proccess_func(this)" class="filt_butt"> Grayscale</button>
-                            <button id="sepia" onclick="proccess_func(this)" class="filt_butt">Sepia</button>
-                            <button id="" onclick="proccess_func()" class="filt_butt"> Sepia</button>
-                            <button id="" onclick="proccess_func()" class="filt_butt"> Sepia</button>
-                            <button id="" onclick="proccess_func()" class="filt_butt"> Sepia</button>
-                            <button id="" onclick="proccess_func()" class="filt_butt"> Sepia</button>
-                            <button id="" onclick="proccess_func()" class="filt_butt"> Sepia</button>
-                            <button id="" onclick="proccess_func()" class="filt_butt"> Sepia</button>
-                            <button id="" onclick="proccess_func()" class="filt_butt"> Sepia</button>
+                <div class="scoop">
+                    <div class="column left"> 
+                        <div class="vid"><video id="video" autoplay><img src="./images/icon.png"></video></div>
+                        <div class="buttons">
+                            <div id="c1" onclick="startWebcam()"></div>
+                            <div id="c2" onclick="snapshot();"></div>
+                            <div id="c3" onclick="stopWebcam();"></div> 
                         </div>
+                    </div>
+                    <col>
+                    <div class="preview">
+                            <canvas  id="myCanvas"> </canvas>
+                    </div>
+            </div>
+                <div class="column right">
+                    sfsdf
                 </div>
+               
             </div>
         </aside>
+
+
         <article>
-            sfsdfsdf
+            <div class="wrapper-content">
+                <form id="ff">
+                    <label>Blur:</label><br>
+                    <input type="range" id="blur" value="0" min="0" max="4" step="0.01" onchange="myFunc()"/><br>
+                    <label>Brightness:</label><br>
+                    <input type="range" id="brightness" value="1" min=".5" max="4" step="0.01" onchange="myFunc()"/><br>
+                    <label>Saturate:</label><br>
+                    <input type="range" id="saturate" value="100" min="0" max="200" onchange="myFunc(this)"/><br>
+                    <label>Hue:</label><br>
+                    <input type="range" id="hue-rotate" value="0" min="0" max="360" onchange="myFunc(this)"/><br>
+                    <label>Contrast:</label><br>
+                    <input type="range" id="contrast" value="100" min="0" max="200" onchange="myFunc(this)"/><br>
+                    <label>Invert:</label><br>
+                    <input type="range" id="invert" value="0" min="0" max="100" onchange="myFunc(this)"/><br>
+                    <label>Grayscale:</label><br>
+                    <input type="range" id="grayscale" value="0" min="0" max="100" onchange="myFunc(this)"/><br>
+                    <label>Sepia:</label><br>
+                    <input type="range" id="sepia" value="0" min="0" max="100" onchange="myFunc(this)"/><br>
+                    <input type="button" onclick="mm()" value="reset">
+                    <!-- <a href=""></a> -->
+                    <input type="button" id="download" value="download">
+                    <input type="button" onclick="stopman()" value="reset">
+                </form>
+            </div>
         </article>
+
         <footer>Footer</footer>
-      </div>
+        
+    </div>
 </body>
 </html>

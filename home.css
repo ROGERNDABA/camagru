@@ -8,9 +8,10 @@ header {
 
   canvas {
       width: 100%;
-      height: 72%;
+      height: 100%;
   }
 
+  * {border-radius: 10px; font-family: Consolas;}
 
     .filt_butt {
         font-size: calc(.1vw + .1vh + .7vmin);
@@ -29,73 +30,84 @@ header {
 
     .buttons {
         position: relative;
-        background-color: violet;
+        /* background-color: rgb(238, 222, 130); */
         /* width: 96%; */
         height: 3vw;
+        padding-bottom: 1vh;
         display:-webkit-flex;
-        -webkit-justify-content:center;
-        display:flex;
+        /* -webkit-justify-content:center; */
+        /* display:flex; */
         justify-content:center;
+        opacity: 1;
     }
     
     .preview {
         overflow: hidden;
-        margin-top: 3%;
-        margin-left: 1%; 
-        background-color: tomato;
-        width: 32vw;
-        height: 25vw;
+        display: block;
+        margin-left: 8px; 
+        /* background-color: tomato; */
+        width: 25vw;
+        height: 19vw;
         border-radius: 10px;
         border: 5px solid black;
     }
 
-    .column {
+    /* .column {
         margin-top: 3px;
         background-color: blue;
         display: block;
     }
-    
+     */
     #c1, #c2, #c3 {
         margin-left: 5%;
         position: relative;
-        margin-top: 1%;
+        margin-top: 3%;
         height: 80%;
         /* background-color: #20bf6b; */
         width: 15%;
-        background-size: 60%;
+        background-size: 50%;
         background-repeat: no-repeat;
         background-position: center;
     }
 
-    #c1 {background-image: url('images/film.png');}
-    #c2 {background-image: url('./images/snap.png');}
-    #c3 {background-image: url('images/video.png');}
+    #c1 {background-image: url('images/start.png');}
+    #c2 {background-image: url('./images/snap.png'); background-size: 100%;}
+    #c3 {background-image: url('images/video.png');background-size: 70%;}
 
     .left {
+        border-radius: 10px;
+        border: 5px solid #579FF1;
         margin-left: 8px;
+        margin-bottom: 5%;
+        margin-top: 5%;
         overflow: hidden;
         float: left;
-        background-color: violet;
-        width: 25vw;
+        background-color: black;
+        width: 100%;
         height: 19vw;
+    }
+
+    video {
+        width: 25vw
     }
 
     .right {
-        margin-left: 20px;
+        position: relative;
+        width: auto;
+        margin-left: 47%;
+        margin-right: 3%;
+        height: 250vh + 25vw;
         overflow-y: scroll;
-        height: 19vw;
+        background-color: blue;
     }
 
     .vid {
-        background-color: violet;
-        position: relative; 
-        top: 0;
-        width: 24vw;
+        /* background-color: violet; */
+        position: relative;
+        left: 0;
+        width: 25vw;
         height: 80%;
-        margin-top: 3%;
-        margin-left: 0;
         /* z-index: -1; */
-        background-size: cover;
         overflow: hidden;
     }
 
@@ -125,7 +137,7 @@ header {
   }
   aside {
     grid-area: sidebar;
-    background-color: #45aaf2;
+    background-color: #45f27f;
   }
   footer {
     padding: 20px;
@@ -144,6 +156,18 @@ header {
       height: 100%;
   }
 
+  .scoop {
+      width: 25vw;
+      float: left;
+      /* background-color: teal; */
+  }
+
+  input[type=button] {
+      width: 5vw;
+      height: 3vh;
+      font-size: calc(.1vw + .1vh + 1vmin);
+  }
+
   .ico
   {
       position: relative;
@@ -151,4 +175,11 @@ header {
       background-color: black;
       width: 5vw;
       height: 5vw;
+  }
+  .wrapper-content {
+      display: block;
+      float: left;
+    width: 100%;
+    text-align: center;
+    /* background-color: yellow; */
   }

@@ -90,5 +90,5 @@
     $re = $conn->query($q);
     $re = null;
     $conn = null;
-    header('Location: confirm_email.php?confirm='.base64_encode($email."1"));
+    header('Location: confirm_email.php?confirm='.base64_encode($email));
     ?>
