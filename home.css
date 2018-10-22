@@ -2,13 +2,24 @@ header {
     grid-area: header;
     background-color: #fed330;
     padding: 20px;
-    height: 8vh;
+    height: 6vh;
     border-radius: 10px;
   }
 
-  canvas {
+  #myCanvas{
       width: 100%;
+      background-color: #bf6020;
       height: 100%;
+      z-index: -1;
+  }
+
+    #tCanvas {
+        position: absolute;
+        padding: 0;
+        width: 100px;
+        height: 500px;
+        background-color: blueviolet;
+        /* z-index: 1; */
   }
 
   * {border-radius: 10px; font-family: Consolas;}
@@ -62,15 +73,16 @@ header {
         margin-left: 5%;
         position: relative;
         margin-top: 3%;
-        height: 80%;
-        /* background-color: #20bf6b; */
-        width: 15%;
+        height: 60%;
+        width: 10%;
+        background: black;
         background-size: 50%;
+        border:0;
         background-repeat: no-repeat;
         background-position: center;
     }
 
-    #c1 {background-image: url('images/start.png');}
+    #c1 {background-image: url('images/start.png'); background-size: 50%}
     #c2 {background-image: url('./images/snap.png'); background-size: 100%;}
     #c3 {background-image: url('images/video.png');background-size: 70%;}
 
@@ -94,10 +106,13 @@ header {
     .right {
         position: relative;
         width: auto;
+        /* height: 5vw; */
         margin-left: 47%;
         margin-right: 3%;
-        height: 250vh + 25vw;
+        height: 200vh;
+        overflow: hidden;
         overflow-y: scroll;
+        overflow-x: scroll;
         background-color: blue;
     }
 
@@ -105,23 +120,14 @@ header {
         /* background-color: violet; */
         position: relative;
         left: 0;
-        width: 25vw;
-        height: 80%;
+        width: 100%;
+        height: 90%;
         /* z-index: -1; */
         overflow: hidden;
     }
 
 
-.column>.pl{
-    background-color: blueviolet;
-    height: 128px;
-    left: 5%;
-    margin: -64px 0 0 -64px;
-    position: absolute;
-    top: 50%;
-    width: 128px;
-    /* z-index: 0;  */
-}
+
 
 /* Clear floats after the columns */
     .row:after {
@@ -130,6 +136,9 @@ header {
     clear: both;
     }
 
+    .right {
+        height: 40vw;
+    }
   article {
     grid-area: content;
     background-color: #20bf6b;
@@ -148,7 +157,7 @@ header {
     display: grid;
     grid-gap: 10px;
     grid-template-rows: 1fr 7fr 1fr;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 5fr 1fr;
     grid-template-areas:
       "header  header"
       "sidebar content"
@@ -183,3 +192,16 @@ header {
     text-align: center;
     /* background-color: yellow; */
   }
+
+  @media only screen and (max-width: 750px) {
+    .wrapper {
+        grid-template-areas:
+      "header  header"
+      "sidebar sidebar"
+      "content content"
+      "footer  footer";
+        }
+
+        * { border-radius: 2px;}
+    
+    }

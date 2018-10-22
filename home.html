@@ -8,7 +8,7 @@
 
     <title>Document</title>
 </head>
-<body onload="init();">
+<body>
     <div class="wrapper">
         <header>
             <div class="ico">
@@ -18,25 +18,25 @@
 
 
         <aside> 
-            <script src="video.js"></script>
             <div class="row">
                 <div class="scoop">
+                    <script src="video.js"></script>
                     <div class="column left"> 
                         <div class="vid"><video id="video" autoplay><img src="./images/icon.png"></video></div>
                         <div class="buttons">
-                            <div id="c1" onclick="startWebcam()"></div>
-                            <div id="c2" onclick="snapshot();"></div>
-                            <div id="c3" onclick="stopWebcam();"></div> 
+                            <button id="c1"></button>
+                            <button id="c2"></button>
+                            <button id="c3"></button>
                         </div>
                     </div>
-                    <col>
-                    <div class="preview">
-                            <canvas  id="myCanvas"> </canvas>
+                    <canvas  id="myCanvas">adadas</canvas>
+                    <div id="preview" class="preview">
+                        <!-- <canvas  id="tCanvas"> </canvas>
+                            <script src="filter.js"></script> -->
+                        </div>
                     </div>
-            </div>
-                <div class="column right">
-                    sfsdf
-                </div>
+                    <div id="saved_images" class="right">
+                    </div>
                
             </div>
         </aside>
@@ -46,25 +46,25 @@
             <div class="wrapper-content">
                 <form id="ff">
                     <label>Blur:</label><br>
-                    <input type="range" id="blur" value="0" min="0" max="4" step="0.01" onchange="myFunc()"/><br>
+                    <input type="range" id="blur" value="0" min="0" max="4" step="0.01" oninput="myFunc()"/><br>
                     <label>Brightness:</label><br>
-                    <input type="range" id="brightness" value="1" min=".5" max="4" step="0.01" onchange="myFunc()"/><br>
+                    <input type="range" id="brightness" value="1" min=".5" max="4" step="0.01" oninput="myFunc()"/><br>
                     <label>Saturate:</label><br>
-                    <input type="range" id="saturate" value="100" min="0" max="200" onchange="myFunc(this)"/><br>
+                    <input type="range" id="saturate" value="100" min="0" max="200" oninput="myFunc(this)"/><br>
                     <label>Hue:</label><br>
-                    <input type="range" id="hue-rotate" value="0" min="0" max="360" onchange="myFunc(this)"/><br>
+                    <input type="range" id="hue-rotate" value="0" min="0" max="360" oninput="myFunc(this)"/><br>
                     <label>Contrast:</label><br>
-                    <input type="range" id="contrast" value="100" min="0" max="200" onchange="myFunc(this)"/><br>
+                    <input type="range" id="contrast" value="100" min="0" max="200" oninput="myFunc(this)"/><br>
                     <label>Invert:</label><br>
-                    <input type="range" id="invert" value="0" min="0" max="100" onchange="myFunc(this)"/><br>
+                    <input type="range" id="invert" value="0" min="0" max="100" oninput="myFunc(this)"/><br>
                     <label>Grayscale:</label><br>
-                    <input type="range" id="grayscale" value="0" min="0" max="100" onchange="myFunc(this)"/><br>
+                    <input type="range" id="grayscale" value="0" min="0" max="100" oninput="myFunc(this)"/><br>
                     <label>Sepia:</label><br>
-                    <input type="range" id="sepia" value="0" min="0" max="100" onchange="myFunc(this)"/><br>
+                    <input type="range" id="sepia" value="0" min="0" max="100" oninput="myFunc(this)"/><br>
                     <input type="button" onclick="mm()" value="reset">
                     <!-- <a href=""></a> -->
                     <input type="button" id="download" value="download">
-                    <input type="button" onclick="stopman()" value="reset">
+                    <input id="reset"  type="button" onclick="save()">
                 </form>
             </div>
         </article>

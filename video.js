@@ -1,4 +1,13 @@
-function startWebcam() {
+window.addEventListener("load", function() {
+
+    var canvas, ctx, i = 0;
+    canvas = document.getElementById("myCanvas");
+    var pre = document.getElementById("preview");
+    ctx = canvas.getContext('2d');
+
+
+
+document.getElementById("c1").addEventListener("click", function(){
     var video = document.querySelector('video');
     var constraints = window.constraints = {audio: false, video: true};
     var errorElement = document.querySelector('#errorMsg');
@@ -31,41 +40,41 @@ function startWebcam() {
         console.error(error);
       }
     }
-}
-var recorder = new MediaRecorder(stream);
-
-recorder.addEventListener('dataavailable', function(e) {
-    // e.data contains the audio data! let's associate it to an <audio> element
-    var el = document.querySelector('audio');
-    el.src = URL.createObjectURL(e.data);
 });
 
+function removeElement(id) {
+    var elem = document.getElementById(id);
+    return elem.parentNode.removeChild(elem);
+}
 
-
+document.getElementById("c2").addEventListener("click", function()  {
+    var pre = document.getElementById("preview");
+    if (document.getElementById("temp"))
+        removeElement("temp");
+    ctx.drawImage(video, 0,0, canvas.width, canvas.height);
+    var ss = convertCanvasToImage(canvas);
+    pre.appendChild(ss);
+});
 
 function stopWebcam() {
-    recorder.start();
+    webcamStream.stop()
 }
 
 function stopman() {
     recorder.stop();
 }
 
-var canvas, ctx;
 
-function init() {
-    canvas = document.getElementById("myCanvas");
-    ctx = canvas.getContext('2d');
-}
 
-function snapshot() { 
-    ctx.drawImage(video, 0,0, canvas.width, canvas.height);
-    ctx.save();
-}
+
 
 function convertCanvasToImage(canvas) {
 	var image = new Image();
-	image.src = canvas.toDataURL("image/png");
+    image.src = canvas.toDataURL("image/png");
+    image.setAttribute("alt", "myImage" + i++)
+    image.setAttribute("style", "width: 100%; height:100%");
+    // image.setAttribute("style", "height: 80%;");
+    image.setAttribute("id", "temp");
 	return image;
 }
 
@@ -75,29 +84,41 @@ function mm() {
     document.getElementById("ff").reset();
 }
 
+function save(){
+
+}});
+
+
+
+
+
+
+
+
+
+
+
 function myFunc()
 {
 
-    var imy = document.getElementById("myCanvas");
-
-
+    var imy = document.getElementById("temp");
     
-    var Blur = document.getElementById("blur").value;
-    var Brightness = document.getElementById("brightness").value;
-    var Saturate = document.getElementById("saturate").value;
-    var Hue = document.getElementById("hue-rotate").value;
-    var Contrast = document.getElementById("contrast").value;
-    var Invert = document.getElementById("invert").value;
-    var Grayscale = document.getElementById("grayscale").value;
-    var Sepia = document.getElementById("sepia").value;
-    imy.setAttribute("style",'-webkit-filter: blur(' + Blur + 'px)brightness('
-                                                + Brightness + ')saturate('
-                                                + Saturate + '%)hue-rotate('
-                                                + Hue + 'deg)contrast('
-                                                + Contrast + '%)invert('
-                                                + Invert + '%)grayscale('
-                                                + Grayscale + '%)sepia('
-                                                + Sepia + '%)');
+    var Blur = document.getElementById("blur");
+    var Brightness = document.getElementById("brightness");
+    var Saturate = document.getElementById("saturate");
+    var Hue = document.getElementById("hue-rotate");
+    var Contrast = document.getElementById("contrast");
+    var Invert = document.getElementById("invert");
+    var Grayscale = document.getElementById("grayscale");
+    var Sepia = document.getElementById("sepia");
+    imy.setAttribute("style",'-webkit-filter: blur(' + Blur.value + 'px)brightness('
+                                                + Brightness.value + ')saturate('
+                                                + Saturate.value + '%)hue-rotate('
+                                                + Hue.value + 'deg)contrast('
+                                                + Contrast.value + '%)invert('
+                                                + Invert.value + '%)grayscale('
+                                                + Grayscale.value + '%)sepia('
+                                                + Sepia.value + '%)');
     imy.setAttribute("style",'-webkit-filter: blur(' + Blur.value + 'px)brightness('
                                                 + Brightness.value + ')saturate('
                                                 + Saturate.value + '%)hue-rotate('
@@ -115,4 +136,3 @@ function myFunc()
                                                 + Grayscale.value + '%)sepia('
                                                 + Sepia.value + '%)');
 }
-
