@@ -29,11 +29,10 @@
                             <button id="c3"></button>
                         </div>
                     </div>
-                    <canvas  id="myCanvas">adadas</canvas>
                     <div id="preview" class="preview">
-                        <!-- <canvas  id="tCanvas"> </canvas>
-                            <script src="filter.js"></script> -->
-                        </div>
+                            <canvas  id="myCanvas"></canvas>
+
+                    </div>
                     </div>
                     <div id="saved_images" class="right">
                     </div>
@@ -44,7 +43,7 @@
 
         <article>
             <div class="wrapper-content">
-                <form id="ff">
+                <form id="form">
                     <label>Blur:</label><br>
                     <input type="range" id="blur" value="0" min="0" max="4" step="0.01" oninput="myFunc()"/><br>
                     <label>Brightness:</label><br>
@@ -61,10 +60,11 @@
                     <input type="range" id="grayscale" value="0" min="0" max="100" oninput="myFunc(this)"/><br>
                     <label>Sepia:</label><br>
                     <input type="range" id="sepia" value="0" min="0" max="100" oninput="myFunc(this)"/><br>
-                    <input type="button" onclick="mm()" value="reset">
-                    <!-- <a href=""></a> -->
-                    <input type="button" id="download" value="download">
-                    <input id="reset"  type="button" onclick="save()">
+
+
+                    <input type="button" onclick="reset(); myFunc();" value="reset">
+                    <input id="save"  type="button" value="Save Image">
+                    <a id="down" href="#"><input type="button" id="download" value="download"></a>
                 </form>
             </div>
         </article>

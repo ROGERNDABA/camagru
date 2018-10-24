@@ -17,7 +17,7 @@
             }
             $this->_conn = false;
             try {
-                $this->_conn = new PDO("mysql:host=localhost;", 'root', $password);
+                $this->_conn = new PDO("mysql:host=".$_SERVER['SERVER_NAME'].";", 'root', $password);
                 $this->_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch(PDOException $e) {
                 echo "Connection failed: " . $e->getMessage();
@@ -37,19 +37,20 @@
     $sql = "CREATE DATABASE camagru";
     $conn->query($sql);
     $conn->exec("use camagru");
-
+    $pw = password_hash('dontunlock', PASSWORD_DEFAULT);
+    $tok = rand();
     $conn->query("CREATE TABLE IF NOT EXISTS camagru . accounts (
                 username varchar(32) NOT NULL,
                 name varchar(32) NOT NULL,
                 surname varchar (32) NOT NULL,
                 email varchar(30) NOT NULL,
-                phone_number varchar(32) NOT NULL,
+                passwd varchar(255) NOT NULL,
+                token INT NOT NULL,
+                isusr ENUM('1', '0') NOT NULL,
                 ID INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 isadmin ENUM('1', '0') NOT NULL)");
-
-    $conn->query("CREATE TABLE IF NOT EXISTS camagru . passwords (username varchar(32) NOT NULL, passwd varchar(32) NOT NULL, usr_exists ENUM('1', '0') NOT NULL, ID INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY)");
-    $conn->query("INSERT INTO  camagru . passwords (username, passwd, usr_exists) VALUES ('adminunlock', 'dontunlock', '1')");
-    $conn->query("INSERT INTO  camagru . accounts (username, name, surname, email, phone_number, isadmin) VALUES ('adminunlock', 'adminunlock', 'adminunlock', 'adminunlock', 'dontunlock', '1')");
+    $conn->query("INSERT INTO  camagru . accounts (username, name, surname, email, passwd, token, isusr, isadmin)
+                VALUES ('adminunlock', 'adminunlock', 'adminunlock', 'dontunlock', \"$pw\", $tok, '1', '1')");
     header("Location: index.html");
     $conn->close();
 ?>

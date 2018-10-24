@@ -1,0 +1,3 @@
+    RewriteEngine on
+    RewriteRule ^(mysite/)?([a-z\-]+)$ /$1index.php?page=$1 [L]
+    ErrorDocument 404 /camagru/404.html

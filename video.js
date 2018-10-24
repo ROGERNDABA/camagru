@@ -1,8 +1,13 @@
+var canvas, ctx, i = 0;
+function removeElement(id) {
+    var elem = document.getElementById(id);
+    return elem.parentNode.removeChild(elem);
+}
 window.addEventListener("load", function() {
 
-    var canvas, ctx, i = 0;
     canvas = document.getElementById("myCanvas");
     var pre = document.getElementById("preview");
+    var ims = document.getElementById("saved_images");
     ctx = canvas.getContext('2d');
 
 
@@ -42,18 +47,18 @@ document.getElementById("c1").addEventListener("click", function(){
     }
 });
 
-function removeElement(id) {
-    var elem = document.getElementById(id);
-    return elem.parentNode.removeChild(elem);
-}
 
-document.getElementById("c2").addEventListener("click", function()  {
-    var pre = document.getElementById("preview");
+document.getElementById("save").addEventListener("click", function () {
     if (document.getElementById("temp"))
         removeElement("temp");
     ctx.drawImage(video, 0,0, canvas.width, canvas.height);
+    var ims = document.getElementById("saved_images");
     var ss = convertCanvasToImage(canvas);
-    pre.appendChild(ss);
+    ims.appendChild(ss);
+});
+
+document.getElementById("c2").addEventListener("click", function()  {
+    ctx.drawImage(video, 0,0, canvas.width, canvas.height);
 });
 
 function stopWebcam() {
@@ -66,73 +71,53 @@ function stopman() {
 
 
 
-
-
 function convertCanvasToImage(canvas) {
-	var image = new Image();
-    image.src = canvas.toDataURL("image/png");
-    image.setAttribute("alt", "myImage" + i++)
-    image.setAttribute("style", "width: 100%; height:100%");
+    var image = new Image();
+    var canv = document.getElementById("myCanvas");
+    image.src = canv.toDataURL("image/png");
+    image.setAttribute("alt", "myImage" + i++);
+    image.width = pre.clientWidth;
+    image.height = pre.clientHeight;
     // image.setAttribute("style", "height: 80%;");
     image.setAttribute("id", "temp");
 	return image;
 }
 
-function mm() {
-    var im = document.getElementById("myCanvas");
-    im.removeAttribute("style",'-webkit-filter');
-    document.getElementById("ff").reset();
-}
 
 function save(){
-
-}});
-
-
+    
+}
 
 
-
-
-
-
-
-
+document.getElementById("download").addEventListener("click", function() {
+    var img = document.getElementById("temp"),
+        a = document.getElementById("down");
+    a.setAttribute("download", "YourFileName.png");
+    a.setAttribute("href", img.src);
+});
+});
+function reset() {
+        var im = document.getElementById("myCanvas");
+        im.removeAttribute("style",'-webkit-filter');
+        document.getElementById("form").reset();
+    }
 
 function myFunc()
 {
-
-    var imy = document.getElementById("temp");
-    
-    var Blur = document.getElementById("blur");
-    var Brightness = document.getElementById("brightness");
-    var Saturate = document.getElementById("saturate");
-    var Hue = document.getElementById("hue-rotate");
-    var Contrast = document.getElementById("contrast");
-    var Invert = document.getElementById("invert");
-    var Grayscale = document.getElementById("grayscale");
-    var Sepia = document.getElementById("sepia");
-    imy.setAttribute("style",'-webkit-filter: blur(' + Blur.value + 'px)brightness('
-                                                + Brightness.value + ')saturate('
-                                                + Saturate.value + '%)hue-rotate('
-                                                + Hue.value + 'deg)contrast('
-                                                + Contrast.value + '%)invert('
-                                                + Invert.value + '%)grayscale('
-                                                + Grayscale.value + '%)sepia('
-                                                + Sepia.value + '%)');
-    imy.setAttribute("style",'-webkit-filter: blur(' + Blur.value + 'px)brightness('
-                                                + Brightness.value + ')saturate('
-                                                + Saturate.value + '%)hue-rotate('
-                                                + Hue.value + 'deg)contrast('
-                                                + Contrast.value + '%)invert('
-                                                + Invert.value + '%)grayscale('
-                                                + Grayscale.value + '%)sepia('
-                                                + Sepia.value + '%)');
-    imy.setAttribute("style",'-webkit-filter: blur(' + Blur.value + 'px)brightness('
-                                                + Brightness.value + ')saturate('
-                                                + Saturate.value + '%)hue-rotate('
-                                                + Hue.value + 'deg)contrast('
-                                                + Contrast.value + '%)invert('
-                                                + Invert.value + '%)grayscale('
-                                                + Grayscale.value + '%)sepia('
-                                                + Sepia.value + '%)');
+    var Blur = document.getElementById("blur").value;
+    var Brightness = document.getElementById("brightness").value;
+    var Saturate = document.getElementById("saturate").value;
+    var Hue = document.getElementById("hue-rotate").value;
+    var Contrast = document.getElementById("contrast").value;
+    var Invert = document.getElementById("invert").value;
+    var Grayscale = document.getElementById("grayscale").value;
+    var Sepia = document.getElementById("sepia").value;
+    canvas.setAttribute("style",'-webkit-filter: blur(' + Blur + 'px)brightness('
+    + Brightness + ')saturate('
+    + Saturate + '%)hue-rotate('
+    + Hue + 'deg)contrast('
+    + Contrast + '%)invert('
+    + Invert + '%)grayscale('
+    + Grayscale + '%)sepia('
+    + Sepia + '%)');
 }

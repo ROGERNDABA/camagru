@@ -7,7 +7,7 @@
  *
  */
 
-$stamp = imagecreatefrompng('./images/filt.png');
+$stamp = imagecreatefrompng('./images/film.png');
 $im = imagecreatefrompng('./images/start.png');
 $stw = imagesx($im);
 $marge_bottom = 0;

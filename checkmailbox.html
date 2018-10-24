@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {font-family: Consolas;text-decoration: none;}
+        *:focus {outline:none;}
+        
+        body {background-color: black;}
+        .wrapper
+        {
+            background-color: black;
+            position: relative;
+            text-align: center;
+            top: 25vh;
+            width: 100%;
+            height: 500px;
+        }
+
+        img {
+            position: relative;
+            width: 120px;
+            height: 80px;
+            top: 80px;
+            margin: 0 auto;
+        }
+        .container
+        {
+            border-radius: 3px;
+            background-color: black;
+            position: relative;
+            margin: 0 auto;
+            height: 100%;
+            width: 600px;
+            border: 1px solid #579ff1;
+        }
+        .text {
+            position: relative;
+            top: 120px;
+            color:#579ff1;
+            display:block;
+            font-size: 12px;
+        }
+        @media only screen and (max-width: 750px) {
+            .container {
+                width: 500px;
+            }
+            img {width: 90px;height: 60px;}
+            .text {font-size: 10;}
+        }
+
+        @media only screen and (max-width: 500px) {
+            .wrapper {height: 300px;}
+            .container {width: 300px;}
+            img {width: 70px;height: 40px;}
+            .text {font-size: 8;}
+        }
+    </style>
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <img src="https://preview.ibb.co/nsYGkq/mail.png" alt=""><br>
+            <div class="text">Please check your email for reset link</div><br><br>
+            <div class="text">you'll be redirected to main login page in <span id="count" style="color:#2ef74d">10</span></div>
+        </div>
+        <script type="text/javascript">
+            var timeleft = 10;
+            var downloadTimer = setInterval(function(){
+            timeleft--;
+            document.getElementById("count").textContent = timeleft;
+            if(timeleft <= 0) {
+                clearInterval(downloadTimer);
+                document.location.href = "login.phtml";
+            }
+            },1000);
+        </script>
+    </div>
+</body>
+</html>

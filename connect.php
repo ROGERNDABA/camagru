@@ -27,8 +27,6 @@ class Database {
 }
 
 function conOpen() {
-    $servername = "localhost";
-    $username = "root";
     $password = "rooty";
     
     $db = new Database();
