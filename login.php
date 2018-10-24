@@ -15,7 +15,7 @@ $username = $_POST['login'];
 $passwd = $_POST['passwd'];
 if(!$username || !$passwd)
 {
-   $msg = "Blank field for Username or Password";
+   $msg = "blank field for username or password";
    $msgEncoded = base64_encode($msg);
    header("location:login.phtml?msg=".$msgEncoded."&usr=".$username);
    exit();

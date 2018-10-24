@@ -5,12 +5,12 @@ label {
     left: 3vw;
     font-family: Consolas;
     color: #579ff1;
-    font-size: calc(6px + .8vw);
+    font-size: 20px;
 }
 
 span {
     color: red;
-    font-size: calc(17px + .8vw); 
+    font-size: 20px; 
 }
 input {
     background-color:  black;
