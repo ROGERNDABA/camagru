@@ -2,12 +2,12 @@
     include("connect.php");
     
     $conn = conOpen();
-    $name = $_POST['name'];
-    $surname  = $_POST['surname'];
-    $username = $_POST['login'];
-    $phone_number = $_POST['phone_number'];
-    $email = $_POST['email'];
-    $passwd = $_POST['passwd'];
+    $name = stripslashes($_POST['name']);
+    $surname  = stripslashes($_POST['surname']);
+    $username = stripslashes($_POST['login']);
+    $phone_number = stripslashes($_POST['phone_number']);
+    $email = stripslashes($_POST['email']);
+    $passwd = stripslashes($_POST['passwd']);
 
 
 
@@ -34,6 +34,12 @@
         $msgEncoded = base64_encode($msg);
         header("location:new_account.phtml?msg=".$msgEncoded);
         exit;
+    }
+    elseif (strlen($passwd) <= 6) {
+            $msg = "password short";
+            $msgEncoded = base64_encode($msg);
+            header("location:new_account.phtml?msg=".$msgEncoded);
+            exit;
     }
 
 /////////////////////////////////  VLAIDATE THE USER EMAIL  /////////////////////////////////////////////////////////

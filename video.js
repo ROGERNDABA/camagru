@@ -91,11 +91,13 @@ function save(){
 
 document.getElementById("download").addEventListener("click", function() {
     var img = document.getElementById("temp"),
-        a = document.getElementById("down");
+    a = document.getElementById("down");
     a.setAttribute("download", "YourFileName.png");
     a.setAttribute("href", img.src);
 });
 });
+
+
 function reset() {
         var im = document.getElementById("myCanvas");
         im.removeAttribute("style",'-webkit-filter');

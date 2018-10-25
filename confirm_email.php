@@ -11,6 +11,9 @@
     use PHPMailer\PHPMailer\Exception;
 
     require 'vendor/autoload.php';
+    
+    $ff = base64_encode("please verfy your email address");
+    header("location: login.phtml?msgv=".$ff);
     $message = file_get_contents("mail_template.html");
     $link = "http://".$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/camagru/login.phtml?usr=".$_GET['usr']."&ok=".$_GET['user'];
 
@@ -29,7 +32,7 @@
     $mail->Username = "camagrurmdaba@gmail.com";
     $mail->Password = "rootyroot";
     $mail->SetFrom("rogerndaba@gmail.com", "Camagru Team");
-    $mail->Subject = "Test";
+    $mail->Subject = "Verify email";
     $mail->msgHTML($message);
     $confirm = base64_decode($_GET['confirm']);
     $mail->AddAddress($confirm);
@@ -39,5 +42,4 @@
      } else {
         echo "Message has been sent";
      }
-     header("location: login.phtml?msgv=".base64_encode("please verfy your email address"));
 ?>

@@ -8,6 +8,27 @@ label {
     font-size: 20px;
 }
 
+meter {
+    position: relative;
+    left: 3vw;
+    width: 400px;
+    background: none;
+    background-color: rgba(255, 255, 255, 0.1);
+
+}
+
+meter::-webkit-meter-bar {
+    background: none;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+meter[value="1"]::-webkit-meter-optimum-value { background: red; }
+meter[value="2"]::-webkit-meter-optimum-value { background: yellow; }
+meter[value="3"]::-webkit-meter-optimum-value { background: orange; }
+meter[value="4"]::-webkit-meter-optimum-value { background: green; }
+
+
+
 span {
     color: red;
     font-size: 20px; 
@@ -39,6 +60,8 @@ input {
     width: 100%;
     height: 800px;
 }
+
+
 input[type=submit] {
     border: 0;
     background-color: #579ff1;

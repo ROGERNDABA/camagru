@@ -39,7 +39,25 @@
                 <input type='text' name='login' id='login'  maxlength="50" /><br>
 
                 <label for='passwd' >Password<span>*</span></label>
-                <input type='password' name='passwd' id='passwd' maxlength="50" autocomplete="false"><br>
+                <input type='password' name='passwd' id='passwd' maxlength="50" autocomplete="false" onkeyup="strength()">
+                <script>
+                
+                var counter = 0;
+                function strength() {
+                var str = document.getElementById("strength");
+                var string = document.getElementById("passwd").value;
+                    if (/[a-z]/.test(string))
+                        str.value++;
+                    if (/[A-Z]/.test(string))
+                        str.value = 2;
+                    if (/[0-9]/.test(string))
+                        str.value = 3;
+                    if (/[!@#$&*]/.test(string))
+                        str.value = 4;
+                }
+                
+                </script>
+                <meter max="4" id="strength"  value="0"></meter><br><br>
 
                 <label for='email' >Email<span>*</span></label><br>
                 <input type='text' name='email' id='email'  maxlength="50" /><br>
@@ -47,7 +65,7 @@
                 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
                 <div class="g-recaptcha" data-sitekey="6LeaWnYUAAAAAFuFapEu-y1BjnRNHLpHXv4WJ8hV" data-theme="dark" data-size="normal"></div>
 
-                <input type='submit' name='submit' value='CREATE' />
+                <input type='submit' name='submit' value='CREATE'/>
             </form>
         </div>
     </div>

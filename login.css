@@ -34,13 +34,14 @@ body {
 
 .verify
 {
-    text-align: center;
+    /* text-align: center; */
     position: relative;
     top: 75px;
     font-family: Consolas;
-    font-size: calc(7px + .5vw);
+    font-size: 13px;
     color: #2ef74d;
-    left: 54px;
+    left: -85px;
+    /* left: -2vw; */
 }
 
 input
@@ -90,6 +91,8 @@ input[type=submit]
         height: 40px;
         margin-left: 50px;
     }
+
+    .verify{font-size: 7.6px;}
 
     .login_class { height: 350px; }
 
