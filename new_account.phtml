@@ -30,13 +30,13 @@
                            
                 <input type='hidden' name='submitted' id='submitted' value='1'/>
                 <label for='name' >Name<span>*</span></label><br>
-                <input type='text' name='name' id='name'  maxlength="50" /><br>
+                <input type='text' name='name' id='name'  maxlength="50" pattern="[a-zA-Z0-9_]+$" title="Only letters, numbers and underscores"/><br>
 
                 <label for='surname' >Surname<span>*</span></label>
-                <input type='text' name='surname' id='surname' maxlength="50" /><br>
+                <input type='text' name='surname' id='surname' maxlength="50" pattern="[a-zA-Z0-9_]+$" title="Only letters, numbers and underscores"/><br>
 
                 <label for='login' >Username<span>*</span></label><br>
-                <input type='text' name='login' id='login'  maxlength="50" /><br>
+                <input type='text' name='login' id='login'  maxlength="50" pattern="[a-zA-Z0-9_]+$" title="Only letters, numbers and underscores"/><br>
 
                 <label for='passwd' >Password<span>*</span></label>
                 <input type='password' name='passwd' id='passwd' maxlength="50" autocomplete="false" onkeyup="strength()">

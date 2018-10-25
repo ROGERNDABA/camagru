@@ -98,6 +98,7 @@ document.getElementById("download").addEventListener("click", function() {
 });
 
 
+
 function reset() {
         var im = document.getElementById("myCanvas");
         im.removeAttribute("style",'-webkit-filter');

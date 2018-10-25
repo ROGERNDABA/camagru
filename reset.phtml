@@ -1,0 +1,58 @@
+<?php
+/*
+ *
+ *    File created by Roger Ndaba
+ *    Project: camagru
+ *    File: reset.phtml
+ *
+ */
+
+ ?>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="forgot_password.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="email_class">
+    <div class="email_container">
+            <form id='index' action='reset.php?usr=<?php echo $_GET['usr']?>&tok=<?php echo $_GET['tok']?>' method='post' accept-charset='UTF-8'>
+            <span class="error_msg" id="error">
+                <?php if(isset($_GET['msg'])) echo base64_decode($_GET['msg']);unset($_GET['msg']);?>
+            </span>
+            <input type='password' name='passwd1' id='passwd1' maxlength="50" placeholder="password" onfocus="remove();"/><br>
+            <input type='password' name='passwd2' id='passwd2' maxlength="50" placeholder="confirm password" onfocus="remove();"/><br>
+            <input type='submit' name='submit' id='submit' value='reset' disabled="disabled"/>      
+            <script>
+                    function remove(){
+                        document.getElementById('error').innerHTML=' ';                        
+                    }
+
+                    document.getElementById('error').innerHTML=' ';
+                    var p1 = document.getElementById('passwd1'),
+                    p2 = document.getElementById('passwd2');
+                    function validatePassword() {
+                        if ((p2.value!='')&&(p1.value != p2.value)) {
+                            document.getElementById('error').innerHTML='passwords don\'t Match';
+                        } else if (p1.value.length < 8) {
+                            document.getElementById('error').innerHTML='password too short';
+                        }
+                         else if (!p1.value || !p2.value){
+                            document.getElementById('error').innerHTML=' ';
+                        }else {
+                            document.getElementById('error').innerHTML=' ';
+                            document.getElementById('submit').removeAttribute('disabled');
+                        }
+                    }
+                    p1.onchange = validatePassword;
+                    p2.onkeyup = validatePassword;
+            </script>
+            </form>
+    </div>
+</div>
+</body>
+</html>

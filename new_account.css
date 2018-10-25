@@ -37,7 +37,7 @@ input {
     background-color:  black;
     color: #579ff1;
     font-display: Consolas;
-    font-size: calc(.6vw + .1vmin);
+    font-size: 15px;
     padding-left: 10px;
     border: .8px solid #579ff1;
     text-align: center;

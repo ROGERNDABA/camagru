@@ -1,0 +1,165 @@
+body {
+    background-color: black;
+    margin: 0;
+    font-family: Consolas;
+    font-weight: bold;
+    padding: 2vw;
+}
+
+article { 
+    /* padding: 2vw; */
+    font-size: 0;
+    display: -ms-flexbox;
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    flex-flow: row wrap;
+    -webkit-flex-flow: row wrap; 
+    flex-flow: row wrap; 
+    display:  box;
+    display: -webkit-box;
+    display: flex;
+  }
+
+  /* CSS Document */
+
+
+#container {
+    /* padding: 2vw; */
+	margin: 0 auto;
+}
+
+.icon {
+    width: 200px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.ims {
+    width:80%;
+    height:80%;
+    margin:8px;
+}
+
+.icon_wrapper {
+    border-radius: 3px;
+    background-color: #579ff1;
+    width: 100%;
+    height: 150px;
+}
+
+nav {
+    border-radius: 3px;
+    text-align: center;
+	margin: 40px 0;
+	background-color: #579ff1;
+}
+
+.image {
+    border-radius: 3px;
+    margin: 3px;
+    border: 3px solid #579ff1;
+}
+
+nav ul {
+	padding: 0;
+  margin: 0;
+	list-style: none;
+	position: relative;
+	}
+	
+nav ul li {
+	display:inline-block;
+    background-color: #579ff1;
+	}
+
+nav a {
+    width: 150px;
+	display:block;
+	/* padding:0 10px;	 */
+	color:black;
+	font-size:15px;
+	line-height: 60px;
+    text-decoration:none;
+    text-align: center;
+    /* border-right: 2px solid black; */
+}
+
+nav a:hover {
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+    background-color: #000000;
+    color: #579ff1; 
+}
+
+/* Hide Dropdowns by Default */
+nav ul ul {
+	display: none;
+	position: absolute; 
+    top: 60px;
+    /* the height of the main nav */
+}
+	
+/* Display Dropdowns on Hover */
+nav ul li:hover > ul {
+	display:inherit;
+}
+	
+/* Fisrt Tier Dropdown */
+nav ul ul li {
+	width:150px;
+	float:none;
+	display:list-item;
+	position: relative;
+}
+
+
+	
+/* Change this in order to change the Dropdown symbol */
+li > a:after { content:  ' ▼'; }
+li > a:only-child:after { content: ''; }
+  
+  
+  article div {
+      box-flex: auto;
+    -webkit-box-flex: auto;
+    flex: auto;
+    -ms-flex: auto;
+    flex: auto; 
+    width: 200px; 
+    /* margin: .5vw;  */
+  }
+  article div img { 
+    width: 100%; 
+    height: auto;
+  }
+  @media screen and (max-width: 750px) {
+    article div { margin: 0; }
+    article { padding: 0; }
+    nav a {
+        width: 30px;
+	line-height: 30px;
+    font-size: 6px;
+    }
+
+    nav {
+
+	    margin-top:2px;
+	    margin-bottom:  2px;
+    }
+    .icon_wrapper {height: 80px;}
+
+    nav ul ul {top: 30px}
+    nav ul ul li {width: auto;}
+
+    .ims {
+        width:80%;
+        height:80%;
+        margin:9px;
+    }
+
+    .icon {width: 100px}
+}
+
+  
