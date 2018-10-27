@@ -22,6 +22,16 @@ header {
         /* z-index: 1; */
   }
 
+  #img_div{
+      background-color: #bf6020;
+    width: 300px;
+    height: 200px;
+    padding: 5px;
+    margin: 15px auto;
+    border: 1px solid #cbcbcb;
+}
+
+
   * {border-radius: 10px; font-family: Consolas;}
 
     .filt_butt {

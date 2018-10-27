@@ -8,6 +8,7 @@
  */
     include("connect.php");
 
+    session_start();
     if (isset($_GET['ok'])) {
         $conn = conOpen();
         $tok = $_GET['ok'];
@@ -22,6 +23,8 @@
             }
         }
     }
+    if (isset($_SESSION) && $_SESSION['user'])
+        header("location: public.phtml")
 ?>
 <html lang="en">
     <head>

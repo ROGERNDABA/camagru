@@ -43,7 +43,7 @@
                 username varchar(32) NOT NULL,
                 name varchar(32) NOT NULL,
                 surname varchar (32) NOT NULL,
-                email varchar(30) NOT NULL,
+                email varchar(255) NOT NULL,
                 passwd varchar(255) NOT NULL,
                 token INT NOT NULL,
                 isusr ENUM('1', '0') NOT NULL,
@@ -51,6 +51,7 @@
                 isadmin ENUM('1', '0') NOT NULL)");
     $conn->query("INSERT INTO  camagru . accounts (username, name, surname, email, passwd, token, isusr, isadmin)
                 VALUES ('adminunlock', 'adminunlock', 'adminunlock', 'dontunlock', \"$pw\", $tok, '1', '1')");
+    $conn->query("CREATE TABLE IF NOT EXISTS `camagru`.`images` ( `pics` VARCHAR(30) NULL DEFAULT NULL ) ENGINE = InnoDB;");
     header("Location: index.html");
-    $conn->close();
+    $conn = null;
 ?>

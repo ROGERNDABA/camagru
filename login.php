@@ -37,8 +37,10 @@ else
                 header("location:login.phtml?msg=".$msgEncoded."&usr=".$username);
                 exit();
             }
-            $_SESSION['username'] = $username;
-            header("Location: home.php");
+            session_destroy();
+            session_start();
+            $_SESSION['user'] = $username;
+            header("Location: public.phtml");
             exit();
         }
     }

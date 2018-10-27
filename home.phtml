@@ -1,3 +1,17 @@
+<?php
+/*
+ *
+ *    File created by Roger Ndaba
+ *    Project: camagru
+ *    File: home.phtml
+ *
+ */
+    include('connect.php');
+    $conn = conOpen();
+    $re = $conn->query( "SELECT * FROM `images`");
+    session_start();
+ ?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -68,6 +82,22 @@
                     <a id="down" href="#"><input type="button" id="download" value="download"></a>
                 </form>
             </div>
+
+            <form method="POST" action="upload.php" enctype="multipart/form-data">
+                <input type="hidden" name="size" value="1000000">
+                <div>
+                  <input type="file" name="image">
+                    <button type="submit" name="upload">POST</button>
+                </div>
+            </form>
+            <?php
+                while ($row = $re->fetch(PDO::FETCH_ASSOC)) {
+                echo "<div id='img_div'>";
+                  echo "<img src='uploads/".$row['pics']."' style='width:300px;height:200px;' >";
+            echo "</div>";
+        }
+        print_r($_SESSION);
+        ?>
         </article>
 
         <footer>Footer</footer>
