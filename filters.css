@@ -1,6 +1,6 @@
 input[type=range] {
     -webkit-appearance: none;
-    margin: .6vw 0;
+    /* margin: .6vw 0; */
     width: 100%;
     outline: none;
   }

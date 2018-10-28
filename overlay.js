@@ -3,9 +3,11 @@ var img_ele = null;
 function zoom(zoomincrement) {
   img_ele = document.getElementById('drag-img');
   var pre_width = img_ele.getBoundingClientRect().width,
-  		pre_height = img_ele.getBoundingClientRect().height;
+          pre_height = img_ele.getBoundingClientRect().height;
+    if ((pre_width * zoomincrement) > 50){
   img_ele.style.width = (pre_width * zoomincrement) + 'px';
   img_ele.style.height = (pre_height * zoomincrement) + 'px';
+    }
   img_ele = null;
 }
 
@@ -36,9 +38,10 @@ function while_drag() {
   if (img_ele !== null) {
     img_ele.style.left = (x_cursor - x_img_ele) + 'px';
     img_ele.style.top = ( window.event.clientY - y_img_ele) + 'px';
-      console.log('dragging > img_left:' + img_ele.style.left+' | img_top: '+img_ele.style.top);
+      console.log('left:' + img_ele.style.left+' | top: '+img_ele.style.top);
   }
 }
+
 
 document.getElementById('drag-img').addEventListener('mousedown', start_drag);
 document.getElementById('overlay').addEventListener('mousemove', while_drag);

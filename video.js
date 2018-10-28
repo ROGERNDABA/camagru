@@ -1,4 +1,5 @@
-var canvas, ctx, i = 0;
+var loopFrame;
+var canvas, ctx, i = 0, j = 0, issaved = 0;
 function removeElement(id) {
     var elem = document.getElementById(id);
     return elem.parentNode.removeChild(elem);
@@ -13,62 +14,73 @@ window.addEventListener("load", function() {
 
 
 document.getElementById("c1").addEventListener("click", function(){
-    var video = document.querySelector('video');
-    video.controls = false;
-    var constraints = window.constraints = {audio: false, video: true};
-    var errorElement = document.querySelector('#errorMsg');
+    navigator.getUserMedia  =   navigator.getUserMedia ||
+                                navigator.webkitGetUserMedia ||
+                                navigator.mozGetUserMedia ||
+                                navigator.msGetUserMedia;
+            video = document.createElement('video');
+            video.setAttribute('autoplay',true);
 
-    navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
-    var videoTracks = stream.getVideoTracks();
-    console.log('Got stream with constraints:', constraints);
-    console.log('Using video device: ' + videoTracks[0].label);
-    stream.onremovetrack = function() {
-        console.log('Stream ended');
-    };
-    window.stream = stream;
-      video.srcObject = stream;
-    })
-    .catch(function(error) {
-      if (error.name === 'ConstraintNotSatisfiedError') {
-        errorMsg('The resolution ' + constraints.video.width.exact + 'x' +
-            constraints.video.width.exact + ' px is not supported by your device.');
-      } else if (error.name === 'PermissionDeniedError') {
-        errorMsg('Permissions have not been granted to use your camera and ' +
-          'microphone, you need to allow the page access to your devices in ' +
-          'order for the demo to work.');
-      }
-      errorMsg('getUserMedia error: ' + error.name, error);
-    });
+            window.vid = video;
+            
+            function getWebcam() {
+                navigator.getUserMedia({ video: true, audio: false }, function(stream) {
+                    video.srcObject = stream;
+                    track = stream.getTracks()[0];
+                }, function(e) {
+                    console.error('Rejected!', e);
+                });
+            }
+            
+            getWebcam();
+            
+            
+            function loop() {
+                ctx.drawImage(video, 0, 0, width, height);
+                loopFrame = requestAnimationFrame(loop);
+            }
+            
+            function startLoop() {
+                ctx.translate(width, 0);
+                ctx.scale(-1, 1);
+                loopFrame = loopFrame || requestAnimationFrame(loop);
+            }
+            
+            video.addEventListener('loadedmetadata',function(){
+                width = canvas.width = video.videoWidth;
+                height = canvas.height = video.videoHeight;
+                startLoop();
+            });
+            
+            document.querySelector('#c2').onclick = function() {
+                if (j == 0 ) {
+                    cancelAnimationFrame(loopFrame); j = 1;
+                    // window.alert(loopFrame);
 
-    function errorMsg(msg, error) {
-      errorElement.innerHTML += '<p>' + msg + '</p>';
-      if (typeof error !== 'undefined') {
-        console.error(error);
-      }
-    }
+                }else {
+                    loopFrame = requestAnimationFrame(loop); j = 0;
+                }
+            }
 });
 
 
 document.getElementById("save").addEventListener("click", function () {
-    if (document.getElementById("temp"))
-        removeElement("temp");
     
-    if (canvas.toDataURL() != document.getElementById('myCanvas2').toDataURL()) {
+    if (issaved != loopFrame){
+    if ((canvas.toDataURL() != document.getElementById('myCanvas2').toDataURL()) && j == 1) {
         var can2 = cloneCanvas(canvas);
         var   cetx = can2.getContext('2d');
-        var image = new Image(canvas.width*2, canvas.height * 3);
+        var image = new Image(700, 520);
         image.src = can2.toDataURL("image/png");
         image.setAttribute("alt", "myImage" + i++);
-        image.setAttribute("style", "background-color:yellow");
+        image.setAttribute("style", "width:400px;height:300px");
         image.setAttribute("id", "temp");
         cetx.drawImage(image, 0,0 , canvas.width, canvas.height);
-        var ims = document.getElementById("saved_images");
+        var ims = document.getElementById("scoop");
         ims.appendChild(image);
+        issaved = loopFrame;
     }
-});
-
-document.getElementById("c2").addEventListener("click", function()  {
-    ctx.drawImage(video, 0,0, canvas.width, canvas.height);
+}
 });
 
 function cloneCanvas(oldCanvas) {
@@ -106,6 +118,23 @@ function reset() {
         myFunc();
     });
     
+     function galleryz() {
+        var e = document.getElementById('scoop'),
+        x = document.getElementById('gallery'),
+        z = window.document.defaultView.getComputedStyle(e).getPropertyValue('z-index');
+       if(z == 2) {
+            e.style.zIndex = "-1";
+            x.innerHTML = 'GALLERY';
+       }
+       else {
+            e.style.zIndex = "2";
+            x.innerHTML = 'BACK';
+       }
+    }
+    
+    
+    document.getElementById('gallery').addEventListener('click', galleryz);
+
 });
 
 
@@ -128,4 +157,11 @@ function myFunc(){
     + Sepia + '%)');
 }
 
+var clicked = 0;
 
+function addSticker(x) {
+    if (clicked == 0) {
+        var n = document.getElementById('drag-img');
+        n.setAttribute('src', x.src);
+    }
+}

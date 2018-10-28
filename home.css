@@ -6,13 +6,24 @@ header {
     border-radius: 10px;
   }
 
-  #myCanvas{
-      width: 100%;
-      background-color: #bf6020;
-      height: 440px;
-      z-index: -1;
-  }
+  /* .mySlides {
+} */
+#myCanvas{
+    width: 100%;
+    background-color: black;
+    height: 440px;
+    z-index: -1;
+}
 
+
+#stickers {
+    margin: 0 auto;
+      position: absolute;
+        overflow-x: scroll;
+        width: 100%;
+    background-color: black;
+    height: 420px;
+  }
     #tCanvas {
         position: absolute;
         padding: 0;
@@ -36,6 +47,7 @@ header {
     position: relative;
     width: 200px;
     top: 50%;
+    border: 0;
     transform: translate(-50%, -50%);
     left: 50%;
   }
@@ -81,12 +93,17 @@ header {
     outline-width: 1px;
 }
 
-    .filt_butt {
-        font-size: calc(.1vw + .1vh + .7vmin);
-        margin-top: 1%;
-        margin-left: .2%;
-        width: 6vw;
-        height: 1.6vw;
+    .filter_buttons {
+        margin: 1.33%;
+        display: table-cell;
+        height: 70%;
+        width: 46%;
+        border: 0;
+        font-size: 100%;
+        font-weight: bolder;
+        outline-style: dashed;
+        background-color: black;
+        color: #579FF1;
     }
 
     .filters {
@@ -97,7 +114,7 @@ header {
     }
 
      .buttons {
-        position: absolute;
+            position: absolute;
         /* background-color: #20bf6b; */
             bottom: 0px;
             width: 100%;
@@ -120,15 +137,15 @@ header {
     .column {
         width: 700px;
         margin: 0 auto;
-        margin-top: 2vw;
+        /* margin-top: 2px; */
         height: auto;
         /* background-color: blue; */
     }
     
 
-    #c1 {background-image: url('images/start.png'); background-size: 60px 100%;}
-    #c2 {background-image: url('./images/snap.png');  background-size: 100px 140%;}
-    #c3 {background-image: url('images/video.png'); background-size: 60px 100%;}
+    #c1 {background-image: url('images/start.png'); background-size: 55px 90%;}
+    #c2 {background-image: url('./images/snap.png');  background-size: 95px 100%;}
+    #c3 {background-image: url('images/video.png'); background-size: 55px 90%;}
 
     .left {
         position: relative;
@@ -141,6 +158,7 @@ header {
         width: 100%;
         height: 520px;
     }
+
 
     video {
         width: inherit;
@@ -165,11 +183,10 @@ header {
         position: relative;
         left: 0;
         width: 100%;
-        height: 440;
+        /* height: 440; */
         /* z-index: -1; */
         overflow: hidden;
     }
-
 
 
 
@@ -184,11 +201,13 @@ header {
         height: 40vw;
     }
   article {
+      position: relative;
     grid-area: content;
     background-color: #20bf6b;
-    padding: 210px;
+    padding: 10px;
   }
   aside {
+    position: relative;
     grid-area: sidebar;
     background-color: #45f27f;
     height: 100%;
@@ -210,10 +229,15 @@ header {
       height: 100%;
   }
 
-  .scoop {
-      width: 25vw;
-      float: left;
-      /* background-color: teal; */
+  #scoop {
+      position: absolute;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+
+      /* float: left; */
+      background-color: teal;
   }
 
   input[type=button] {
@@ -230,16 +254,22 @@ header {
       width: 100px;
       height: 100%;
   }
-  .wrapper-content {
-      display: block;
-      float: left;
-    width: 100%;
+.wrapper-content {
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 400px;
+    position: relative;
     text-align: center;
-    /* background-color: yellow; */
-  }
+    background-color: yellow;
+}
 
-  @media only screen and (max-width: 750px) {
+#form {
+    height: 500px;
+}
+
+  @media only screen and (max-width: 1200px) {
     .wrapper {
+        grid-template-columns: 2fr;
         grid-template-areas:
       "header  header"
       "sidebar sidebar"
@@ -248,5 +278,61 @@ header {
         }
 
         * { border-radius: 2px;}
+
+        .column {
+            width: 500px;
+        }
     
+        .preview {
+            height: 380px;
+        }
+
+        .left {
+            height: 380px;
+        }
+
+        .vid {
+            height: 300px;
+        }
+
+        #myCanvas {
+            height: 300px;
+        }
+
+    #overlay {
+        height: 380px;
+    }
+
+
+    #c1 {background-image: url('images/start.png'); background-size: 35px 60%;}
+    #c2 {background-image: url('./images/snap.png');  background-size: 75px 80%;}
+    #c3 {background-image: url('images/video.png'); background-size: 35px 65%;}
+
+    #drag-img {
+        width: 100px;
+    }
+    }
+
+
+    @media only screen and (max-width: 420px) {
+        aside {
+            width: 125%;
+        }
+
+        header {
+            height: 50px;
+            width: 115%;
+        }
+
+        footer {
+            width: 115%;
+        }
+
+        article {
+            width: 120%;
+        }
+
+        .column {
+            width: 300px;
+        }
     }

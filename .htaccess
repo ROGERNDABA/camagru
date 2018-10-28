@@ -1,7 +1,4 @@
     RewriteEngine on
     RewriteRule ^(mysite/)?([a-z\-]+)$ /$1index.php?page=$1 [L]
-    RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)\.html$ /$1 [L,R=301]
     ErrorDocument 404 /camagru/404.html
     ErrorDocument 400 /camagru/400.html
