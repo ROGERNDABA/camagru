@@ -13,10 +13,10 @@ function zoom(zoomincrement) {
 
 document.getElementById('overlay').addEventListener('wheel', function(e) {
     if (e.deltaY < 0) {
-        zoom(1.5);
+        zoom(1.1);
       }
       if (e.deltaY > 0) {
-        zoom(0.5);
+        zoom(0.9);
       }
 })
 
