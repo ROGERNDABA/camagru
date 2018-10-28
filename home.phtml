@@ -60,25 +60,25 @@
             <div class="wrapper-content">
                 <form id="form">
                     <label>Blur:</label><br>
-                    <input type="range" id="blur" value="0" min="0" max="4" step="0.01" oninput="myFunc()"/><br>
+                    <input type="range" id="blur" value="0" min="0" max="4" step="0.01"/><br>
                     <label>Brightness:</label><br>
-                    <input type="range" id="brightness" value="1" min=".5" max="4" step="0.01" oninput="myFunc()"/><br>
+                    <input type="range" id="brightness" value="1.2" min="1" max="2" step="0.01"/><br>
                     <label>Saturate:</label><br>
-                    <input type="range" id="saturate" value="100" min="0" max="200" oninput="myFunc(this)"/><br>
+                    <input type="range" id="saturate" value="100" min="0" max="200" /><br>
                     <label>Hue:</label><br>
-                    <input type="range" id="hue-rotate" value="0" min="0" max="360" oninput="myFunc(this)"/><br>
+                    <input type="range" id="hue-rotate" value="0" min="0" max="360" /><br>
                     <label>Contrast:</label><br>
-                    <input type="range" id="contrast" value="100" min="0" max="200" oninput="myFunc(this)"/><br>
+                    <input type="range" id="contrast" value="100" min="0" max="200" /><br>
                     <label>Invert:</label><br>
-                    <input type="range" id="invert" value="0" min="0" max="100" oninput="myFunc(this)"/><br>
+                    <input type="range" id="invert" value="0" min="0" max="100" /><br>
                     <label>Grayscale:</label><br>
-                    <input type="range" id="grayscale" value="0" min="0" max="100" oninput="myFunc(this)"/><br>
+                    <input type="range" id="grayscale" value="0" min="0" max="100" /><br>
                     <label>Sepia:</label><br>
-                    <input type="range" id="sepia" value="0" min="0" max="100" oninput="myFunc(this)"/><br>
+                    <input type="range" id="sepia" value="0" min="0" max="100" /><br>
 
 
                     <input type="button" onclick="reset(); myFunc();" value="reset">
-                    <input id="save"  type="button" value="Save Image">
+                    <input id="save" type="button" value="Save Image">
                     <a id="down" href="#"><input type="button" id="download" value="download"></a>
                 </form>
             </div>

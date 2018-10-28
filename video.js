@@ -51,43 +51,40 @@ document.getElementById("c1").addEventListener("click", function(){
 document.getElementById("save").addEventListener("click", function () {
     if (document.getElementById("temp"))
         removeElement("temp");
-    ctx.drawImage(video, 0,0, canvas.width, canvas.height);
+    var can2 = cloneCanvas(canvas);
+    var   cetx = can2.getContext('2d');
+    
+    var image = new Image(canvas.width*2, canvas.height * 3);
+    image.src = can2.toDataURL("image/png");
+    image.setAttribute("alt", "myImage" + i++);
+    image.setAttribute("style", "background-color:yellow");
+    image.setAttribute("id", "temp");
+    cetx.drawImage(image, 0,0 , canvas.width, canvas.height);
     var ims = document.getElementById("saved_images");
-    var ss = convertCanvasToImage(canvas);
-    ims.appendChild(ss);
+    ims.appendChild(image);
 });
 
 document.getElementById("c2").addEventListener("click", function()  {
     ctx.drawImage(video, 0,0, canvas.width, canvas.height);
 });
 
-function stopWebcam() {
-    webcamStream.stop()
+function cloneCanvas(oldCanvas) {
+    var newCanvas = document.createElement('canvas');
+    var context = newCanvas.getContext('2d');
+
+    newCanvas.width = oldCanvas.width;
+    newCanvas.height = oldCanvas.height;
+    context.filter = 'blur(' +  document.getElementById("blur").value+ 'px)'
+    + 'brightness(' + document.getElementById("brightness").value * 90 + '%)'
+    + 'saturate(' + document.getElementById("saturate").value + '%)'
+    + 'hue-rotate(' + document.getElementById("hue-rotate").value + 'deg)'
+    + 'contrast(' + document.getElementById("contrast").value + '%)'
+    + 'invert(' + document.getElementById("invert").value + '%)'
+    + 'grayscale(' + document.getElementById("grayscale").value + '%)'
+    + 'sepia(' + document.getElementById("sepia").value + '%)';
+    context.drawImage(oldCanvas, 0, 0);
+    return newCanvas;
 }
-
-function stopman() {
-    recorder.stop();
-}
-
-
-
-function convertCanvasToImage(canvas) {
-    var image = new Image();
-    var canv = document.getElementById("myCanvas");
-    image.src = canv.toDataURL("image/png");
-    image.setAttribute("alt", "myImage" + i++);
-    image.width = pre.clientWidth;
-    image.height = pre.clientHeight;
-    // image.setAttribute("style", "height: 80%;");
-    image.setAttribute("id", "temp");
-	return image;
-}
-
-
-function save(){
-    
-}
-
 
 document.getElementById("download").addEventListener("click", function() {
     var img = document.getElementById("temp"),
@@ -95,18 +92,21 @@ document.getElementById("download").addEventListener("click", function() {
     a.setAttribute("download", "YourFileName.png");
     a.setAttribute("href", img.src);
 });
-});
-
-
 
 function reset() {
         var im = document.getElementById("myCanvas");
         im.removeAttribute("style",'-webkit-filter');
         document.getElementById("form").reset();
     }
+    
+    document.addEventListener('input', function(){
+        myFunc();
+    });
+    
+});
 
-function myFunc()
-{
+
+function myFunc(){
     var Blur = document.getElementById("blur").value;
     var Brightness = document.getElementById("brightness").value;
     var Saturate = document.getElementById("saturate").value;
@@ -124,3 +124,5 @@ function myFunc()
     + Grayscale + '%)sepia('
     + Sepia + '%)');
 }
+
+
