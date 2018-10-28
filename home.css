@@ -2,14 +2,14 @@ header {
     grid-area: header;
     background-color: #fed330;
     padding: 20px;
-    height: 6vh;
+    height: 100px;
     border-radius: 10px;
   }
 
   #myCanvas{
       width: 100%;
       background-color: #bf6020;
-      height: 100%;
+      height: 440px;
       z-index: -1;
   }
 
@@ -31,8 +31,55 @@ header {
     border: 1px solid #cbcbcb;
 }
 
+#drag-img {
+    cursor: move;
+    position: relative;
+    width: 200px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+  }
 
-  * {border-radius: 10px; font-family: Consolas;}
+#overlay {
+    position: absolute;
+    /* background-color: red; */
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+
+.cam {
+    margin: 1.33%;
+    display: table-cell;
+    height: 70%;
+    width: 30%;
+    border: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+  }
+
+  .preview_button {
+    margin: 1.33%;
+    display: table-cell;
+    height: 70%;
+    width: 46%;
+    border: 0;
+    font-size: 100%;
+    font-weight: bolder;
+         outline-style: dashed;
+
+    background-color: #579FF1;
+  }
+  * {
+    border-radius: 3px;
+    font-family:
+    Consolas; text-decoration: none;
+    outline-color: #579FF1;
+    outline-width: 1px;
+}
 
     .filt_butt {
         font-size: calc(.1vw + .1vh + .7vmin);
@@ -49,67 +96,55 @@ header {
         height: 7vw;
     }
 
-    .buttons {
-        position: relative;
-        /* background-color: rgb(238, 222, 130); */
-        /* width: 96%; */
-        height: 3vw;
-        padding-bottom: 1vh;
-        display:-webkit-flex;
-        /* -webkit-justify-content:center; */
-        /* display:flex; */
-        justify-content:center;
-        opacity: 1;
+     .buttons {
+        position: absolute;
+        /* background-color: #20bf6b; */
+            bottom: 0px;
+            width: 100%;
+            height: 80px;
+            display: table;
+            border-top: 2px solid #579FF1;
     }
+
+   
     
     .preview {
-        overflow: hidden;
-        display: block;
-        margin-left: 8px; 
-        /* background-color: tomato; */
-        width: 25vw;
-        height: 19vw;
-        border-radius: 10px;
-        border: 5px solid black;
-    }
-
-    /* .column {
-        margin-top: 3px;
-        background-color: blue;
-        display: block;
-    }
-     */
-    #c1, #c2, #c3 {
-        margin-left: 5%;
         position: relative;
-        height: 60%;
-        width: 10%;
-        background: black;
-        background-size: 50%;
-        border:0;
-        background-repeat: no-repeat;
-        background-position: center;
+        overflow: hidden;
+        background-color: tomato;
+        width: 100%;
+        height: 520px;
+        border: 2px solid #579FF1;
     }
 
-    #c1 {background-image: url('images/start.png'); background-size: 50%}
-    #c2 {background-image: url('./images/snap.png'); background-size: 100%;}
-    #c3 {background-image: url('images/video.png');background-size: 70%;}
+    .column {
+        width: 700px;
+        margin: 0 auto;
+        margin-top: 2vw;
+        height: auto;
+        /* background-color: blue; */
+    }
+    
+
+    #c1 {background-image: url('images/start.png'); background-size: 60px 100%;}
+    #c2 {background-image: url('./images/snap.png');  background-size: 100px 140%;}
+    #c3 {background-image: url('images/video.png'); background-size: 60px 100%;}
 
     .left {
-        border-radius: 10px;
-        border: 5px solid #579FF1;
-        margin-left: 8px;
+        position: relative;
+        border: 2px solid #579FF1;
         margin-bottom: 5%;
         margin-top: 5%;
-        overflow: hidden;
         float: left;
+        overflow: hidden;
         background-color: black;
         width: 100%;
-        height: 19vw;
+        height: 520px;
     }
 
     video {
-        width: 25vw
+        width: inherit;
+        z-index: -1;
     }
 
     .right {
@@ -126,11 +161,11 @@ header {
     }
 
     .vid {
-        /* background-color: violet; */
+        background-color: violet;
         position: relative;
         left: 0;
         width: 100%;
-        height: 90%;
+        height: 440;
         /* z-index: -1; */
         overflow: hidden;
     }
@@ -151,11 +186,12 @@ header {
   article {
     grid-area: content;
     background-color: #20bf6b;
-    padding: 20px;
+    padding: 210px;
   }
   aside {
     grid-area: sidebar;
     background-color: #45f27f;
+    height: 100%;
   }
   footer {
     padding: 20px;
@@ -165,7 +201,7 @@ header {
   .wrapper {
     display: grid;
     grid-gap: 10px;
-    grid-template-rows: 1fr 7fr 1fr;
+    grid-template-rows: 1fr 9fr 1fr;
     grid-template-columns: 5fr 1fr;
     grid-template-areas:
       "header  header"
@@ -191,8 +227,8 @@ header {
       position: relative;
       float: left;
       background-color: black;
-      width: 5vw;
-      height: 5vw;
+      width: 100px;
+      height: 100%;
   }
   .wrapper-content {
       display: block;

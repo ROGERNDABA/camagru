@@ -14,6 +14,7 @@ window.addEventListener("load", function() {
 
 document.getElementById("c1").addEventListener("click", function(){
     var video = document.querySelector('video');
+    video.controls = false;
     var constraints = window.constraints = {audio: false, video: true};
     var errorElement = document.querySelector('#errorMsg');
 
@@ -51,17 +52,19 @@ document.getElementById("c1").addEventListener("click", function(){
 document.getElementById("save").addEventListener("click", function () {
     if (document.getElementById("temp"))
         removeElement("temp");
-    var can2 = cloneCanvas(canvas);
-    var   cetx = can2.getContext('2d');
     
-    var image = new Image(canvas.width*2, canvas.height * 3);
-    image.src = can2.toDataURL("image/png");
-    image.setAttribute("alt", "myImage" + i++);
-    image.setAttribute("style", "background-color:yellow");
-    image.setAttribute("id", "temp");
-    cetx.drawImage(image, 0,0 , canvas.width, canvas.height);
-    var ims = document.getElementById("saved_images");
-    ims.appendChild(image);
+    if (canvas.toDataURL() != document.getElementById('myCanvas2').toDataURL()) {
+        var can2 = cloneCanvas(canvas);
+        var   cetx = can2.getContext('2d');
+        var image = new Image(canvas.width*2, canvas.height * 3);
+        image.src = can2.toDataURL("image/png");
+        image.setAttribute("alt", "myImage" + i++);
+        image.setAttribute("style", "background-color:yellow");
+        image.setAttribute("id", "temp");
+        cetx.drawImage(image, 0,0 , canvas.width, canvas.height);
+        var ims = document.getElementById("saved_images");
+        ims.appendChild(image);
+    }
 });
 
 document.getElementById("c2").addEventListener("click", function()  {
