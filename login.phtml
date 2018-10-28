@@ -23,8 +23,10 @@
             }
         }
     }
-    if (isset($_SESSION) && $_SESSION['user'])
-        header("location: public.phtml")
+    if (isset($_SESSION)){
+        if($_SESSION['user'])
+            header("location: public.phtml");
+    }
 ?>
 <html lang="en">
     <head>
