@@ -15,7 +15,7 @@
     $ff = base64_encode("please verfy your email address");
     header("location: login.phtml?msgv=".$ff);
     $message = file_get_contents("mail_template.html");
-    $link = "http://".$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/camagru/login.phtml?usr=".$_GET['usr']."&ok=".$_GET['user'];
+    $link = "http://".$_SERVER['SERVER_NAME']."/camagru/login.phtml?usr=".$_GET['usr']."&ok=".$_GET['user'];
 
     $message = str_replace("%link%", $link, $message);
     $message = str_replace("%str%", "Thank you for making an account.<br>Please click button below to verify.", $message);

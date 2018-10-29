@@ -35,7 +35,7 @@ else
             $s = "usr=".base64_encode($row['username'])."&tok=".base64_encode(hash('whirlpool', $row['token']));
 
 
-            $link = "http://".$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/camagru/reset.phtml?".$s;
+            $link = "http://".$_SERVER['SERVER_NAME']."/camagru/reset.phtml?".$s;
             $message = str_replace("%link%", $link, $message);
             $message = str_replace("%str%", "You are getting this email because you requested<br>a password reset.", $message);
             $message = str_replace("%button%", "reset", $message);

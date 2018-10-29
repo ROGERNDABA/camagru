@@ -17,7 +17,7 @@ class Database {
         }
         $this->_conn = false;
         try {
-            $this->_conn = new PDO("mysql:host=localhost;dbname=camagru", 'root', $password);
+            $this->_conn = new PDO("mysql:host=localhost;dbname=camagru", 'admin', $password);
             $this->_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
@@ -27,7 +27,7 @@ class Database {
 }
 
 function conOpen() {
-    $password = "rooty";
+    $password = "rootyroot";
     
     $db = new Database();
     $conn = $db->getConnection($password);
