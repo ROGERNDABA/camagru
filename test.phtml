@@ -1,3 +1,17 @@
+<?php
+/*
+ *
+ *    File created by Roger Ndaba
+ *    Project: camagru
+ *    File: home.phtml
+ *
+ */
+    include('connect.php');
+    $conn = conOpen();
+    $re = $conn->query( "SELECT * FROM `images`");
+    session_start();
+ ?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,44 +30,33 @@
 
             </div>
         </header>
-        <aside> 
-            <div class="column">
-                <script src="video.js"></script>
-                <div class="left">
-                    <div class="vid">
-                        <div id="overlay">
-                                <img ondragstart="return false" id="drag-img" />
-                        </div>
-                        <canvas  id="myCanvas"></canvas>
-                        <script src="./overlay.js"></script>
-                        <!-- <video id="video" autoplay></video> -->
-                    </div>
-                    <div class="buttons">
-                        <button class="cam" id="c1" title="start webcam"></button>
-                        <button class="cam" id="c2" title="Snapshort"></button>
-                        <button class="cam" id="c3" title="Camcorder"></button>
-                    </div>
-                </div>
-                <div class="preview">
-                    <div id="stickers">
-                    <?php
-                        $files = glob("filters/*.*");
-                        for ($i=0; $i<count($files); $i++) {
-                            $image = $files[$i];
-                            echo '<img id=ima"'.$i.'" onclick="addSticker(this)" class="mySlides" src="'.$image .'" alt="Random image" style="width:20%;height:30%;background-color:#'. str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT).'"/>';
-                        }
-                        ?>
-                    </div>
-                    <canvas  id="myCanvas2"></canvas>
-                    <div class="buttons">
-                        <button class="preview_button" id="save">save</button>
-                        <a id="down" href="#"><button class="preview_button" id="download">download</button></a>
-                    </div>
-                </div>
-            </div>
-            <div id="scoop">
 
-            </div> 
+
+        <aside> 
+            <div class="row">
+                <div class="scoop">
+                    <script src="video.js"></script>
+                    <div class="column left"> 
+                        <div class="vid">
+                            <div class="overimg"></div>
+                            <video id="video" autoplay></video>
+                        </div>
+                        <div class="buttons">
+                            <button id="c1"></button>
+                            <button id="c2"></button>
+                            <button id="c3"></button>
+                        </div>
+                    </div>
+                    <div id="preview" class="preview">
+                            <canvas  id="myCanvas"></canvas>
+                            <canvas  id="myCanvas2"></canvas>
+
+                    </div>
+                    </div>
+                    <div id="saved_images" class="right">
+                    </div>
+               
+            </div>
         </aside>
 
 
@@ -76,12 +79,12 @@
                     <input type="range" id="grayscale" value="0" min="0" max="100" /><br>
                     <label>Sepia:</label><br>
                     <input type="range" id="sepia" value="0" min="0" max="100" /><br>
-                       
-                    <div class="buttons">
-                        <button class="filter_buttons" id="gallery">GALLERY</button>
-                        <button class="filter_buttons" onclick="reset(); myFunc();">RESET</button>
-                    </div>
-                </form><br>
+
+
+                    <input type="button" onclick="reset(); myFunc();" value="reset">
+                    <input id="save" type="button" value="Save Image">
+                    <a id="down" href="#"><input type="button" id="download" value="download"></a>
+                </form>
             </div>
 
             <form method="POST" action="upload.php" enctype="multipart/form-data">
@@ -91,6 +94,14 @@
                     <button type="submit" name="upload">POST</button>
                 </div>
             </form>
+            <?php
+                while ($row = $re->fetch(PDO::FETCH_ASSOC)) {
+                echo "<div id='img_div'>";
+                  echo "<img src='uploads/".$row['pics']."' style='width:300px;height:200px;' >";
+            echo "</div>";
+        }
+        print_r($_SESSION);
+        ?>
         </article>
 
         <footer>Footer</footer>
