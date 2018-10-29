@@ -12,7 +12,6 @@
 
     $conn = conOpen();
 
-    // var_dump($_POST);exit;
     if (isset($_POST['upload'])) {
         // Get image name
         $image = $_FILES['image']['name'];
