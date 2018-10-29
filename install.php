@@ -6,6 +6,13 @@
  *    File: install.php
  *
  */
+
+    if(!isset($_GET['login'])) {
+        echo '<script type="text/javascript"> 
+        var value = prompt("Input a value", "");
+        window.location.href = "install.php?value="+encodeURIComponent(value);
+        </script>';
+    }
     
     class Database {
 
@@ -28,7 +35,7 @@
 
     $servername = "localhost";
     $username = "root";
-    $password = "rooty";
+    $password = $_GET['value'];
 
     $db = new Database();
     $conn = $db->getConnection($password);
