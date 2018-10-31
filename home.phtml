@@ -6,10 +6,13 @@
  *    File: home.phtml
  *
  */
-    //include('connect.php');
-    //$conn = conOpen();
-    //$re = $conn->query( "SELECT * FROM `images`");
-    //session_start();
+    include('connect.php');
+    $conn = conOpen();
+    session_start();
+    $user = $_SESSION['user'];
+    $stmt = $conn->prepare("SELECT `pic` FROM `images` WHERE `username` = :user ORDER BY `create_date` DESC");
+    $stmt->execute(array(':user' => $user));
+
  ?>
 <html lang="en">
 <head>
@@ -56,19 +59,24 @@
                         $files = glob("filters/*.*");
                         for ($i=0; $i<count($files); $i++) {
                             $image = $files[$i];
-                            echo '<img id=ima"'.$i.'" onclick="addSticker(this)" class="mySlides" src="'.$image .'" alt="Random image" style="width:20%;height:25%;background-color:#'. str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT).'"/>';
+                            echo '<img id=ima'.$i.' onclick="addSticker(this)" class="mySlides" src="'.$image .'" style="background-color:#'. str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT).'"/>';
                         }
                         ?>
                     </div>
                     <canvas  id="myCanvas2"></canvas>
                     <div class="buttons">
                         <button class="preview_button" id="save">save</button>
-                        <a id="down" href="#"><button class="preview_button" id="download">download</button></a>
+                        <!-- <a id="down" href="#"><button class="preview_button" id="download">download</button></a> -->
                     </div>
                 </div>
             </div>
             <div id="scoop">
-
+                <?php
+                    $i = 0;
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<img src='data:image/png;base64,".$row['pic']."' id='temp' alt='".$user.$i++."'>";
+                    }
+                ?>
             </div> 
         </aside>
 
@@ -102,22 +110,8 @@
                         <button class="filter_buttons" onclick="reset(); myFunc();">RESET</button>
                     </div>
             </div>
-
-            <form method="POST" action="upload.php" enctype="multipart/form-data">
-                <input type="hidden" name="size" value="1000000">
-                <div>
-                  <input type="file" name="image">
-                    <button type="submit" name="upload">POST</button>
-                </div>
-            </form>
-            <?php
-            //     while ($row = $re->fetch(PDO::FETCH_ASSOC)) {
-            //     echo "<div id='img_div'>";
-            //       echo "<img src='uploads/".$row['pics']."' style='width:300px;height:200px;' >";
-            //     echo "</div>";
-            // }
-            //  print_r($_SESSION);
-        ?>
+            <input type="file" name="image" id='imageLoader'>
+            <input type="file" accept="video/*" capture>
         </article>
     </div>
 </body>

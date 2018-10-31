@@ -1,5 +1,5 @@
 var loopFrame;
-var canvas, ctx, i = 0, j = 0, issaved = 0;
+var canvas, ctx, i = 0, j = 0, issaved = 0, upload = 0;
 function removeElement(id) {
     var elem = document.getElementById(id);
     return elem.parentNode.removeChild(elem);
@@ -35,10 +35,7 @@ document.getElementById("c1").addEventListener("click", function(){
             getWebcam();
             
             
-            function loop() {
-                ctx.drawImage(video, 0, 0, width, height);
-                loopFrame = requestAnimationFrame(loop);
-            }
+            
             
             function startLoop() {
                 ctx.translate(width, 0);
@@ -64,22 +61,31 @@ document.getElementById("c1").addEventListener("click", function(){
 });
 
 
+function load(url, element) {
+    req = new XMLHttpRequest();
+
+    req.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(req.responseText);
+        }
+    };
+    req.open("GET", url, true);
+    req.send(null); 
+}
+
+
 document.getElementById("save").addEventListener("click", function () {
     var toto;
      var drg = document.getElementById('drag-img');
-    if (issaved != loopFrame){
+    if (issaved != loopFrame || upload == 1){
     if ((canvas.toDataURL() != document.getElementById('myCanvas2').toDataURL()) && j == 1) {
         var can2 = cloneCanvas(canvas);
         var   cetx = can2.getContext('2d');
-        var image = new Image(700, 520);
+        var image = new Image(1800, 1600);
         image.src = can2.toDataURL("image/png");
         image.setAttribute("alt", "myImage" + i++);
         image.setAttribute("style", "width:400px;height:300px");
-        image.setAttribute("id", "temp");
         cetx.drawImage(image, 0,0 , canvas.width, canvas.height);
-        var ims = document.getElementById("scoop");
-        // window.alert('X: '+ drg.offsetLeft + ' ' + 'Y: ' + drg.offsetTop + 'W: ' + drg.width + ' H: ' + drg.height + ' dh: ' + image.clientWidth);
-        
         $.ajax({
             type: 'POST',
             url: 'insert.php',                
@@ -94,10 +100,10 @@ document.getElementById("save").addEventListener("click", function () {
             },
          success: function(data) {
              console.log(data);
-            toto = "data:image/png;base64," + data;
          }  
         })
         issaved = loopFrame;
+        load('home.phtml', document.getElementById('scoop'));
     }
 }
 });
@@ -120,12 +126,17 @@ function cloneCanvas(oldCanvas) {
     return newCanvas;
 }
 
-document.getElementById("download").addEventListener("click", function() {
-    var img = document.getElementById("temp"),
-    a = document.getElementById("down");
-    a.setAttribute("download", "YourFileName.png");
-    a.setAttribute("href", img.src);
-});
+function loop() {
+    ctx.drawImage(video, 0, 0, width, height);
+    loopFrame = requestAnimationFrame(loop);
+}
+
+// document.getElementById("download").addEventListener("click", function() {
+//     var img = document.getElementById("temp"),
+//     a = document.getElementById("down");
+//     a.setAttribute("download", "YourFileName.png");
+//     a.setAttribute("href", img.src);
+// });
 
 
     document.addEventListener('input', function(){
@@ -148,6 +159,27 @@ document.getElementById("download").addEventListener("click", function() {
     
     
     document.getElementById('gallery').addEventListener('click', galleryz);
+
+    function readImage() {
+        if ( this.files && this.files[0] ) {
+            var file_read= new FileReader();
+            file_read.onload = function(e) {
+               var imgU = new Image();
+
+               imgU.setAttribute('style', 'width:500px;height:340px;');
+               imgU.addEventListener("load", function() {
+                cancelAnimationFrame(loopFrame); j = 1;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(imgU, 0, 0, canvas.width, canvas.height);
+                upload = 1;
+               });
+               imgU.src = e.target.result;
+            };       
+            file_read.readAsDataURL( this.files[0] );
+        }
+    }
+    
+    document.getElementById('imageLoader').addEventListener("change", readImage, false);
 
 });
 
