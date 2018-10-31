@@ -10,9 +10,8 @@
     session_start();
     $conn = conOpen();
     $useranme = $_POST['user'];
-    $public = '1';
-    $stmt = $conn->prepare("SELECT `pic`, `likes`, `username` FROM `images` WHERE `public` = :public ORDER BY `create_date` DESC");
-    $stmt->execute(array(':public' => $public));
+    $stmt = $conn->prepare("SELECT `pic`, `likes`, `username` FROM `images` ORDER BY `create_date` DESC");
+    $stmt->execute();
     
 ?>
 
