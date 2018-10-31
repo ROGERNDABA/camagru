@@ -3,7 +3,6 @@ header {
     background-color: #579FF1;
     padding: 20px;
     height: 80px;
-    border-radius: 10px;
   }
 
   body {background-color: black;}
@@ -16,7 +15,10 @@ header {
     z-index: -1;
 }
 
-
+.mySlides {
+    width: 20%;
+    height: 25%;
+}
 #stickers {
     margin: 0 auto;
       position: absolute;
@@ -25,17 +27,9 @@ header {
     background-color: black;
     height: 340px;
   }
-    #tCanvas {
-        position: absolute;
-        padding: 0;
-        width: 100px;
-        height: 500px;
-        background-color: blueviolet;
-        /* z-index: 1; */
-  }
 
-  #img_div{
-      background-color: #bf6020;
+#img_div{
+    background-color: #bf6020;
     width: 300px;
     height: 200px;
     padding: 5px;
@@ -43,25 +37,22 @@ header {
     border: 1px solid #cbcbcb;
 }
 
+#save {width: 96%;}
+
 #drag-img {
     cursor: move;
     position: relative;
     width: 200px;
-    top: 50%;
     border: 0;
-    transform: translate(-50%, -50%);
-    left: 50%;
-  }
+}
 
 #overlay {
     position: absolute;
-    /* background-color: red; */
     overflow: hidden;
     width: 100%;
     height: 100%;
     z-index: 1;
 }
-
 
 .cam {
     margin: 1.33%;
@@ -72,9 +63,9 @@ header {
     background-repeat: no-repeat;
     background-position: center;
     background-color: transparent;
-  }
+}
 
-  .preview_button {
+.preview_button {
     margin: 1.33%;
     display: table-cell;
     height: 70%;
@@ -82,262 +73,238 @@ header {
     border: 0;
     font-size: 100%;
     font-weight: bolder;
-         outline-style: dashed;
-
+    outline-style: dashed;
     background-color: #579FF1;
-  }
-  * {
+}
+
+* {
     border-radius: 3px;
     font-family:
     Consolas; text-decoration: none;
-    outline-color: #579FF1;
     outline-width: 1px;
 }
 
-    .filter_buttons {
-        margin: 1.33%;
-        display: table-cell;
-        height: 70%;
-        width: 46%;
-        border: 0;
-        font-size: 100%;
-        font-weight: bolder;
-        outline-style: dashed;
-        background-color: black;
-        color: #579FF1;
-    }
+.filter_buttons {
+    margin: 1.33%;
+    display: table-cell;
+    height: 70%;
+    width: 46%;
+    border: 0;
+    font-size: 100%;
+    font-weight: bolder;
+    outline-style: dashed;
+    background-color: black;
+    color: #579FF1;
+}
 
-    .filters {
-        display: block;
-        background-color: aqua;
-        width: 100%;
-        height: 7vw;
-    }
+.filters {
+    display: block;
+    background-color: aqua;
+    width: 100%;
+    height: 7vw;
+}
 
-     .buttons {
-            position: absolute;
-        /* background-color: #20bf6b; */
-            bottom: 0px;
-            width: 100%;
-            height: 50px;
-            display: table;
-            border-top: 2px solid #579FF1;
-    }
+.buttons {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 50px;
+    display: table;
+    border-top: 2px solid #579FF1;
+}
 
-   
-    
-    .preview {
-        position: relative;
-        overflow: hidden;
-        /* background-color: tomato; */
-        width: 100%;
-        height: 390px;
-        border: 2px solid #579FF1;
-    }
-
-    .column {
-        width: 500px;
-        margin: 0 auto;
-        /* margin-top: 2px; */
-        height: auto;
-        z-index: 2;
-        /* background-color: blue; */
-    }
+.preview {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 390px;
+    border: 2px solid #579FF1;
+}
+.column {
+    width: 500px;
+    margin: 0 auto;
+    height: auto;
+    z-index: 2;
+}
     
 
-    #c1 {background-image: url('images/start.png'); background-size: 40px 86%;}
-    #c2 {background-image: url('./images/snap.png');  background-size: 65px 130%;}
-    #c3 {background-image: url('images/video.png'); background-size: 40px 90%;}
+#icon {
+    width: 85px;
+    height: 80px;
+}
 
-    .left {
-        position: relative;
-        border: 2px solid #579FF1;
-        margin-bottom: 5%;
-        margin-top: 5%;
-        float: left;
-        overflow: hidden;
-        background-color: black;
-        width: 100%;
-        height: 390px;
-    }
+#c1 {background-image: url('images/start.png'); background-size: 40px 86%;}
+#c2 {background-image: url('./images/snap.png');  background-size: 65px 130%;}
+#c3 {background-image: url('images/video.png'); background-size: 40px 90%;}
 
+.left {
+    position: relative;
+    border: 2px solid #579FF1;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    float: left;
+    overflow: hidden;
+    background-color: black;
+    width: 100%;
+    height: 390px;
+}
 
-    video {
-        width: inherit;
-        z-index: -1;
-    }
+video {
+    width: inherit;
+    z-index: -1;
+}
 
-    .right {
-        position: relative;
-        width: auto;
-        /* height: 5vw; */
-        margin-left: 47%;
-        margin-right: 3%;
-        height: 200vh;
-        overflow: hidden;
-        overflow-y: scroll;
-        overflow-x: scroll;
-        background-color: blue;
-    }
+.right {
+    position: relative;
+    width: auto;
+    margin-left: 47%;
+    margin-right: 3%;
+    height: 200vh;
+    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    background-color: blue;
+}
 
-    .vid {
-        background-color: violet;
-        position: relative;
-        left: 0;
-        width: 100%;
-        /* height: 440; */
-        /* z-index: -1; */
-        overflow: hidden;
-    }
+.vid {
+    background-color: violet;
+    position: relative;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+}
 
-
-
-/* Clear floats after the columns */
-    .row:after {
+.row:after {
     content: "";
     display: table;
     clear: both;
-    }
-
-    .right {
-        height: 40vw;
-    }
-  article {
-      position: relative;
-    grid-area: content;
-    background-color: #579FF1;
-    padding: 10px;
-  }
-  aside {
+}
+.right {height: 40vw;}
+article {
     position: relative;
-    grid-area: sidebar;
-    background-color: black;
-    border: 2px solid #579FF1;
+  grid-area: content;
+  background-color: #579FF1;
+  padding: 10px;
+}
+
+aside {
+  position: relative;
+  grid-area: sidebar;
+  background-color: black;
+  border: 2px solid #579FF1;
+  height: 100%;
+}
+
+footer {
+  padding: 20px;
+  grid-area: footer;
+  border: 2px solid #579FF1;
+  background-color: black;
+}
+
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-rows: 1fr 9fr 1fr;
+  grid-template-columns: 3fr 1fr;
+  grid-template-areas:
+    "header  header"
+    "sidebar content"
+    "footer  footer";
     height: 100%;
-  }
-  footer {
-    padding: 20px;
-    grid-area: footer;
-    border: 2px solid #579FF1;
+}
+
+#scoop {
+    position: absolute;
+    overflow: hidden;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* float: left; */
     background-color: black;
-  }
-  .wrapper {
-      overflow: hidden;
-    display: grid;
-    grid-gap: 10px;
-    grid-template-rows: 1fr 9fr 1fr;
-    grid-template-columns: 3fr 1fr;
-    grid-template-areas:
-      "header  header"
-      "sidebar content"
-      "footer  footer";
-      height: 100%;
-  }
+}
 
-  #scoop {
-      position: absolute;
-      top: 0px;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+input[type=button] {
+    width: 5vw;
+    height: 3vh;
+    font-size: calc(.1vw + .1vh + 1vmin);
+}
 
-      /* float: left; */
-      background-color: teal;
-  }
-
-  input[type=button] {
-      width: 5vw;
-      height: 3vh;
-      font-size: calc(.1vw + .1vh + 1vmin);
-  }
-
-  .ico
-  {
-      position: relative;
-      float: left;
-      background-color: black;
-      width: 85px;
-      height: 100%;
-  }
+.ico{
+    position: relative;
+    float: left;
+    background-color: black;
+    width: 85px;
+    height: 100%;
+}
 .wrapper-content {
     margin: 0 auto;
     margin-top: 20px;
     width: 400px;
     position: relative;
     text-align: center;
-    /* background-color: yellow; */
 }
 
-#form {
-    height: 500px;
-}
+#form {height: 350px;}
 
   @media only screen and (max-width: 1200px) {
     .wrapper {
         grid-template-columns: 2fr;
         grid-template-areas:
-      "header  header"
-      "sidebar sidebar"
-      "content content"
-      "footer  footer";
-        }
+        "header  header"
+        "sidebar sidebar"
+        "content content"
+        "footer  footer";
+    }
+    #stickers { height: 330px;}
+    * { border-radius: 2px;}
+    .column {width: 500px;}  
+    .vid {height: 330px;}
+    .preview {height: 380px;}
+    .left {height: 380px;}
+    .vid {height: 330px;}
+    #myCanvas {height: 330px;}
+    #overlay {height: 330px;}
+    #form {height: 300px;}
+    #c1 {background-image: url('images/start.png'); background-size: 40px 90%;}
+    #c2 {background-image: url('./images/snap.png');  background-size: 75px 140%;}
+    #c3 {background-image: url('images/video.png'); background-size: 40px 100%;}
+}
 
-        * { border-radius: 2px;}
+@media only screen and (max-width: 500px) {
+    aside {width: 98%; }   
+    #myCanvas {height: 238px;}
+    #c1 {background-image: url('images/start.png'); background-size: 25px 76%;}
+    #c2 {background-image: url('./images/snap.png');  background-size: 48px 130%;}
+    #c3 {background-image: url('images/video.png'); background-size: 28px 94%;}
 
-        .column {
-            width: 500px;
-        }
-    
-        .preview {
-            height: 380px;
-        }
+    #stickers {height: 125px;}
+    .mySlides {width: 10%;}
+    * { border-radius: 1px;}
 
-        .left {
-            height: 380px;
-        }
-
-        .vid {
-            height: 300px;
-        }
-
-        #myCanvas {
-            height: 300px;
-        }
-
-    #overlay {
-        height: 380px;
+    #form {
+        width: 95%;
+        height: 290px;
     }
 
+    .ico {width: 50px;}
+    .left {height: 275px;}
+    .wrapper-content {width: 100%;}
+    .vid { height: 240px;}
+    aside {border: 0;}
+    #overlay {height: 238px;}
 
-    #c1 {background-image: url('images/start.png'); background-size: 35px 60%;}
-    #c2 {background-image: url('./images/snap.png');  background-size: 75px 80%;}
-    #c3 {background-image: url('images/video.png'); background-size: 35px 65%;}
-
-    #drag-img {
-        width: 100px;
+    header {
+        padding: 5px;
+        height: 50px;
+        width: 96%;
     }
-    }
 
-
-    @media only screen and (max-width: 420px) {
-        aside {
-            width: 125%;
-        }
-
-        header {
-            height: 50px;
-            width: 115%;
-        }
-
-        footer {
-            width: 115%;
-        }
-
-        article {
-            width: 120%;
-        }
-
-        .column {
-            width: 300px;
-        }
-    }
+    footer {width: 88%;}
+    article {width: 94%;}
+    .column { width: 100%;}
+    .buttons {height: 35px;}
+    .preview {height: 160px;}
+    #drag-img {width: 50px;}
+}

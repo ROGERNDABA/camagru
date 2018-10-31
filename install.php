@@ -10,7 +10,7 @@
     if(!isset($_GET['login'])) {
         echo '<script type="text/javascript"> 
         var value = prompt("Input a value", "");
-        window.location.href = "install.php?value="+encodeURIComponent(value);
+        window.location.href = "install.php?login="+encodeURIComponent(value);
         </script>';
     }
     
@@ -24,7 +24,7 @@
             }
             $this->_conn = false;
             try {
-                $this->_conn = new PDO("mysql:host=localhost;", 'admin', $password);
+                $this->_conn = new PDO("mysql:host=localhost;", 'root', $password);
                 $this->_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch(PDOException $e) {
                 echo "Connection failed: " . $e->getMessage();
@@ -35,7 +35,7 @@
 
     $servername = "localhost";
     $username = "root";
-    $password = $_GET['value'];
+    $password = $_GET['login'];
 
     $db = new Database();
     $conn = $db->getConnection($password);
@@ -58,7 +58,11 @@
                 isadmin ENUM('1', '0') NOT NULL)");
     $conn->query("INSERT INTO  camagru . accounts (username, name, surname, email, passwd, token, isusr, isadmin)
                 VALUES ('adminunlock', 'adminunlock', 'adminunlock', 'dontunlock', \"$pw\", $tok, '1', '1')");
-    $conn->query("CREATE TABLE IF NOT EXISTS `camagru`.`images` ( `pics` VARCHAR(30) NULL DEFAULT NULL ) ENGINE = InnoDB;");
+    $conn->query("CREATE TABLE IF NOT EXISTS `camagru`. `images` ( `pic` LONGBLOB NULL DEFAULT NULL,
+                                                                    `username` varchar(32) NOT NULL,
+                                                                    `public` ENUM('1', '0') NOT NULL,
+                                                                    `likes` INT NOT NULL, 
+                                                                    `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)ENGINE = InnoDB;");
     header("Location: index.html");
     $conn = null;
 ?>
