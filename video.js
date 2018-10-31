@@ -65,7 +65,8 @@ document.getElementById("c1").addEventListener("click", function(){
 
 
 document.getElementById("save").addEventListener("click", function () {
-    
+    var toto;
+     var drg = document.getElementById('drag-img');
     if (issaved != loopFrame){
     if ((canvas.toDataURL() != document.getElementById('myCanvas2').toDataURL()) && j == 1) {
         var can2 = cloneCanvas(canvas);
@@ -77,7 +78,25 @@ document.getElementById("save").addEventListener("click", function () {
         image.setAttribute("id", "temp");
         cetx.drawImage(image, 0,0 , canvas.width, canvas.height);
         var ims = document.getElementById("scoop");
-        ims.appendChild(image);
+        // window.alert('X: '+ drg.offsetLeft + ' ' + 'Y: ' + drg.offsetTop + 'W: ' + drg.width + ' H: ' + drg.height + ' dh: ' + image.clientWidth);
+        
+        $.ajax({
+            type: 'POST',
+            url: 'insert.php',                
+            data: { x:drg.offsetLeft,
+                    y:drg.offsetTop,
+                    w:drg.width ,
+                    h:drg.height,
+                    dw:image.style.width,
+                    dh:image.style.height,
+                    src:drg.src, 
+                    dst:image.src
+            },
+         success: function(data) {
+             console.log(data);
+            toto = "data:image/png;base64," + data;
+         }  
+        })
         issaved = loopFrame;
     }
 }
@@ -108,12 +127,7 @@ document.getElementById("download").addEventListener("click", function() {
     a.setAttribute("href", img.src);
 });
 
-function reset() {
-        var im = document.getElementById("myCanvas");
-        im.removeAttribute("style",'-webkit-filter');
-        document.getElementById("form").reset();
-    }
-    
+
     document.addEventListener('input', function(){
         myFunc();
     });
@@ -137,6 +151,12 @@ function reset() {
 
 });
 
+function reset() {
+        var im = document.getElementById("myCanvas");
+        im.removeAttribute("style",'-webkit-filter');
+        document.getElementById("form").reset();
+    }
+    
 
 function myFunc(){
     var Blur = document.getElementById("blur").value;
