@@ -128,6 +128,11 @@ header {
 }
     
 
+#icon {
+    width: 85px;
+    height: 80px;
+}
+
 #c1 {background-image: url('images/start.png'); background-size: 40px 86%;}
 #c2 {background-image: url('./images/snap.png');  background-size: 65px 130%;}
 #c3 {background-image: url('images/video.png'); background-size: 40px 90%;}
