@@ -10,9 +10,13 @@
     $conn = conOpen();
     session_start();
     $user = $_SESSION['user'];
-    $stmt = $conn->prepare("SELECT `pic` FROM `images` WHERE `username` = :user ORDER BY `create_date` DESC");
-    $stmt->execute(array(':user' => $user));
-
+    if ($user) {
+        $stmt = $conn->prepare("SELECT `pic` FROM `images` WHERE `username` = :user ORDER BY `create_date` DESC");
+        $stmt->execute(array(':user' => $user));
+    } else {
+        header('location: public.phtml');
+        $conn = null;
+    }
  ?>
 <html lang="en">
 <head>

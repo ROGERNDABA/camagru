@@ -28,20 +28,10 @@ body {
     padding: 2vw;
 }    
 
-article { 
-    /* padding: 2vw; */
-    font-size: 0;
-    display: -ms-flexbox;
-    flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-direction: column;
-    -ms-flex-direction: column;
-    flex-flow: row wrap;
-    -webkit-flex-flow: row wrap; 
-    flex-flow: row wrap; 
-    display:  box;
-    display: -webkit-box;
-    display: flex;
+article {
+    height: 600px;;
+    overflow-x: scroll;
+    overflow-y: hidden;
   }  
 
   @keyframes zoom_inout{

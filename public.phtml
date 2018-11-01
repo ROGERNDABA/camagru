@@ -47,15 +47,19 @@
                     <li><a href="new_account.phtml">SIGN UP</a></li>
                 </ul>
             </li>
-            <li><a href="#">account</a>
-            <!-- First Tier Drop Down -->
-                <ul>
-                    <li><a href="#">profile</a></li>
-                    <li><a href="#">setings</a></li>
-                    <li><a href="forgot_password.phtml">password reset</a></li>
-                </ul>        
-            </li>
-            <li><a href="home.phtml">my studio</a>  
+            
+            <?php
+                if ($_SESSION['user'])
+                    echo 
+                        '<li><a href="#">account</a>
+                        <ul>
+                            <li><a href="#">profile</a></li>
+                            <li><a href="#">setings</a></li>
+                            <li><a href="forgot_password.phtml">password reset</a></li>
+                        </ul>        
+                    </li>'.
+                    '<li><a href="home.phtml">my studio</a>';
+            ?>
             </li>
             <li><a href="#">Inspiration</a></li>
             <li><a href="#">Contact</a></li>
@@ -67,7 +71,8 @@
         <?php
         
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo    '<div class="image">'.
+            if ($_SESSION['user']) {
+                echo    '<div class="image">'.
                     '<img src="data:image/png;base64,'.$row['pic'].'">'.
                     '<div class="overlay">'.
                     '<button id="butt" class="button button-like">'.
@@ -76,6 +81,7 @@
                     '</button>'.
                     '</div>'.
                     '</div>';
+            }
         }
         ?>
 </article>
