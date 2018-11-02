@@ -40,7 +40,8 @@ header {
 #save {width: 96%;}
 
 #drag-img {
-    cursor: move;
+    cursor: -webkit-grab;
+    cursor: grab;
     position: relative;
     width: 200px;
     border: 0;

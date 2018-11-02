@@ -61,17 +61,17 @@ document.getElementById("c1").addEventListener("click", function(){
 });
 
 
-function load(url, element) {
-    req = new XMLHttpRequest();
+// function load(url, element) {
+//     req = new XMLHttpRequest();
 
-    req.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            console.log(req.responseText);
-        }
-    };
-    req.open("GET", url, true);
-    req.send(null); 
-}
+//     req.onreadystatechange = function() {
+//         if (this.readyState == 4 && this.status == 200) {
+//             console.log(req.responseText);
+//         }
+//     };
+//     req.open("GET", url, true);
+//     req.send(null); 
+// }
 
 
 document.getElementById("save").addEventListener("click", function () {
@@ -98,13 +98,17 @@ document.getElementById("save").addEventListener("click", function () {
                     src:drg.src, 
                     dst:image.src
             },
-         success: function(data) {
-             console.log(data);
+         success: function(response) {
+             toto = response;
+             console.log(response);
          }  
         })
+
+        document.getElementById('re').innerHTML = toto;
         issaved = loopFrame;
         load('home.phtml', document.getElementById('scoop'));
     }
+
 }
 });
 

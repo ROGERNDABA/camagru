@@ -5,7 +5,6 @@
     $name = stripslashes($_POST['name']);
     $surname  = stripslashes($_POST['surname']);
     $username = stripslashes($_POST['login']);
-    $phone_number = stripslashes($_POST['phone_number']);
     $email = stripslashes($_POST['email']);
     $passwd = stripslashes($_POST['passwd']);
 

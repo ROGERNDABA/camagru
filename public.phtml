@@ -9,9 +9,7 @@
     include('connect.php');
     session_start();
     $conn = conOpen();
-    $useranme = $_POST['user'];
-    $stmt = $conn->prepare("SELECT `pic`, `likes`, `username` FROM `images` ORDER BY `create_date` DESC");
-    $stmt->execute();
+    $useranme = $_SESSION['user'];
     
 ?>
 
@@ -22,6 +20,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="public.css">
     <link rel="stylesheet" href="buttons.css">
+    <link rel="stylesheet" href="paginate.css">
     <link rel="icon" href="./images/camagru.png">
     <title>Camagru Public</title>
 
@@ -37,7 +36,7 @@
             </div>
         </div>
     </div>
-    <?php if (isset($_GET['bye'])) echo "<div id='bye'>".$_GET['bye']."</div>"; unset($_GET['bye']);?>
+    <?php if (isset($_GET['bye'])){ echo "<div id='bye'>".$_GET['bye']."</div>"; unset($_GET['bye']); session_destroy();}?>
 <div id="container">
     <nav>
         <ul>
@@ -63,37 +62,85 @@
             </li>
             <li><a href="#">Inspiration</a></li>
             <li><a href="#">Contact</a></li>
-            <?php if(isset($_SESSION) && $_SESSION['user']) echo "<li id='logout' onclick='remove()'><a style='background-color:white'>LOGOUT</a></li>" ?>
+            <?php if(isset($_SESSION) && $_SESSION['user']) echo "<li id='logout' onclick='remove()'><a style='background-color:white;cursor:pointer'>LOGOUT</a></li>" ?>
         </ul>
     </nav>
 </div>
     <article>
-        <?php
-        
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            if ($_SESSION['user']) {
-                echo    '<div class="image">'.
-                    '<img src="data:image/png;base64,'.$row['pic'].'">'.
-                    '<div class="overlay">'.
-                    '<button id="butt" class="button button-like">'.
-                    '<i class="fa fa-heart"></i>'.
-                    '<span><span id=count>'.$row['likes'].'</span>&nbsp;Like</span>'.
-                    '</button>'.
-                    '</div>'.
-                    '</div>';
-            }
-        }
-        ?>
-</article>
+        <div class="photo_type">
+            asdfadsda
+        </div>
+        <div id="grid">
+            <?php
+                $i = 1;
+                
+                $stmt = $conn->prepare("SELECT `pic`, `likes`, `username`, `ID` FROM `images` ORDER BY `create_date` DESC");
+                $stmt->execute();
+                while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) && $i < 6) {
+                    echo '<div class="imge"><img id="'.$row['ID'].'" src="data:image/png;base64,'.$row['pic'].'" style="height:90%" alt=""></div>';
+                    $i++;
+                }
+            ?>
+            
+
+        </div>
+        <hr>
+        <div class='buttons_container'>
+            <div class="buttons">
+                <button class="next_prev">PREV</button>
+                <button class="next_prev">NEXT</button>
+            </div>
+        </div>
+        <div id="preview">
+            <div class="one">
+                <img id="preview_pic" style="height:100%" alt="">
+            </div>
+            <div class="two">
+                <div id="comments"><br>
+                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
+                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
+                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
+                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
+                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
+                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
+                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
+                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
+                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
+                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
+                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
+                </div>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+            </div>
+            <img onclick="cancel(this)" id="cancel" src="./images/cancel.png" alt="">
+        </div>
+    </article>
      <script>
+         window.addEventListener('load', function() {
+            var images = document.getElementsByClassName('imge');
+                preview = document.getElementById('preview');
+
+            for (var i = 0; i < images.length; i++) {
+                images[i].addEventListener('click', function(e){
+                    preview.setAttribute('style', 'display:flex');
+                    document.getElementById('preview_pic').setAttribute('src', this.firstChild.src);
+                });
+            }
+
+
+         });
+         function cancel(x) {
+            var win = document.getElementById('preview');
+
+            win.setAttribute('style', 'display:none');
+         }
          function remove() {
              location.href = 'logout.php';
          }
 
-         document.getElementById('butt').addEventListener('click', function() {
-            //  window.alert('sdsdsd');
-             document.getElementById('butt').classList.toggle("liked");
-         });
+        //  document.getElementById('butt').addEventListener('click', function() {
+        //     //  window.alert('sdsdsd');
+        //      document.getElementById('butt').classList.toggle("liked");
+        //  });
         window.addEventListener('mousedown', function() {
             var bye = document.getElementById('bye');
             if(bye){

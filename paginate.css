@@ -1,0 +1,145 @@
+#grid { 
+    display: -ms-grid; 
+    display: grid;
+    -ms-grid-rows: 1fr;
+        grid-template-rows: 1fr;
+    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 2vw;
+    height: auto;
+    width: 100%;
+}
+#grid > div {
+    background: gold;
+    border: 2px solid #579FF1;
+    font-size: 5vw;
+    height: 15vw;
+    text-align: center;
+  }
+
+.imge {
+    -webkit-transition: ease-in-out 500ms;
+    -o-transition: ease-in-out 500ms;
+    transition: ease-in-out 500ms;
+}
+  .imge:hover {
+    -webkit-transform: scale(1.08);
+        -ms-transform: scale(1.08);
+            transform: scale(1.08);
+}
+
+  article {
+      position: relative;
+  }
+
+  #preview_pic {
+      background-color: violet;
+      margin: 0 auto;
+  }
+
+  #comments {
+      margin: 0 auto;
+      width: 100%;
+      height: 50%;
+      overflow-x: scroll;
+      background-color: blueviolet;  
+  }
+
+  ::-webkit-scrollbar { 
+    display: none; 
+}
+
+textarea {
+    margin: 0 auto;
+}
+
+  ul > li {
+      font-size: 10px;
+      padding-right: 5px;
+  }
+
+  #cancel {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+  }
+
+  .two {
+      background-color: yellow;
+      width: auto;
+  }
+
+.one .two{
+    position: relative;
+    width:50%;
+    height:100%;
+    background-color:green;
+    margin:10px;}
+
+#preview {
+    padding: 30px;
+    position: absolute;
+    top: 0;
+    margin: 0 auto;
+    background-color: tomato;
+    width: 70%;
+    display: none;
+    height: 130%;
+}
+
+.buttons_container {
+    display: table;
+    margin-top: 1vw;
+    width: 100%;
+    height: 100px;
+}
+
+hr {
+    background: -webkit-gradient(linear, left top, left bottom, from(black), to(#579FF1));
+    background: -webkit-linear-gradient(black, #579FF1);
+    background: -o-linear-gradient(black, #579FF1);
+    background: linear-gradient(black, #579FF1);
+    border: 0;
+    height: 6px;
+    margin-top: 2vw;
+}
+
+  .next_prev {
+    cursor: pointer;
+    margin: 1.33%;
+    display: table-cell;
+    height: 70%;
+    width: 46%;
+    border: 0;
+    font-size: 100%;
+    font-weight: bolder;
+    background-color: #579FF1;
+}
+
+.buttons {
+    width: 60%;
+    height: 100%;
+    /* background-color: blue; */
+    margin: 0 auto;
+}
+
+  @media screen and (max-width: 1000px) {
+    #grid {
+        -ms-grid-rows: 1fr;
+            grid-template-rows: 1fr;
+        -ms-grid-columns: 1fr;
+            grid-template-columns: 1fr;
+    }
+    #grid > div {
+        margin: 0 auto;
+        width: 100%;
+        height: 200px;
+    }
+
+    .buttons_container {
+        height: 50px;
+    }
+}

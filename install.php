@@ -54,7 +54,6 @@
                 passwd varchar(255) NOT NULL,
                 token INT NOT NULL,
                 isusr ENUM('1', '0') NOT NULL,
-                ID INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 isadmin ENUM('1', '0') NOT NULL)");
     $conn->query("INSERT INTO  camagru . accounts (username, name, surname, email, passwd, token, isusr, isadmin)
                 VALUES ('adminunlock', 'adminunlock', 'adminunlock', 'dontunlock', \"$pw\", $tok, '1', '1')");
@@ -62,7 +61,11 @@
                                                                     `username` varchar(32) NOT NULL,
                                                                     `public` ENUM('1', '0') NOT NULL,
                                                                     `likes` INT NOT NULL, 
-                                                                    `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)ENGINE = InnoDB;");
+                                                                    `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                                                    `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY)ENGINE = InnoDB;");
+    $conn->query('CREATE TABLE IF NOT EXISTS `camagru`.`comments` ( `madeby` VARCHAR(30) NULL DEFAULT NULL , 
+                                                                    `comment` VARCHAR(200) NULL DEFAULT NULL,
+                                                                    `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP) ENGINE = InnoDB;');
     header("Location: index.html");
     $conn = null;
 ?>
