@@ -65,7 +65,8 @@
                                                                     `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY)ENGINE = InnoDB;");
     $conn->query('CREATE TABLE IF NOT EXISTS `camagru`.`comments` ( `madeby` VARCHAR(30) NULL DEFAULT NULL , 
                                                                     `comment` VARCHAR(200) NULL DEFAULT NULL,
-                                                                    `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP) ENGINE = InnoDB;');
+                                                                    `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                                                    `ID` INT NOT NULL, ) ENGINE = InnoDB;');
     header("Location: index.html");
     $conn = null;
 ?>

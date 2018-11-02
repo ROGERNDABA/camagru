@@ -26,7 +26,9 @@ body {
     font-family: Consolas;
     font-weight: bold;
     padding: 2vw;
-}    
+}
+
+
 
 @-webkit-keyframes zoom_inout{
     0% {-webkit-transform: scale(1,1);transform: scale(1,1);}    

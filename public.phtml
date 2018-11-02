@@ -9,8 +9,12 @@
     include('connect.php');
     session_start();
     $conn = conOpen();
+
+    $stmt = $conn->prepare("SELECT * FROM `images`");
+    $stmt->execute();
     $useranme = $_SESSION['user'];
-    
+    $_SESSION['start'] = 4;
+    $_SESSION['next'] = 0;
 ?>
 
 <html lang="en">
@@ -36,7 +40,7 @@
             </div>
         </div>
     </div>
-    <?php if (isset($_GET['bye'])){ echo "<div id='bye'>".$_GET['bye']."</div>"; unset($_GET['bye']); session_destroy();}?>
+    <?php if (isset($_GET) && isset($_GET['bye'])){ echo "<div id='bye'>".$_GET['bye']."</div>"; unset($_GET['bye']); session_destroy();}?>
 <div id="container">
     <nav>
         <ul>
@@ -73,61 +77,126 @@
         <div id="grid">
             <?php
                 $i = 1;
-                
+                if (isset($_SESSION) && isset($_SESSION['user'])) {
                 $stmt = $conn->prepare("SELECT `pic`, `likes`, `username`, `ID` FROM `images` ORDER BY `create_date` DESC");
                 $stmt->execute();
                 while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) && $i < 6) {
-                    echo '<div class="imge"><img id="'.$row['ID'].'" src="data:image/png;base64,'.$row['pic'].'" style="height:90%" alt=""></div>';
+                    echo '<div class="imge"><img id="'.$row['ID'].'" src="data:image/png;base64,'.$row['pic'].'" style="height:90%;cursor:pointer" alt=""></div>';
                     $i++;
                 }
+            }
             ?>
-            
-
         </div>
         <hr>
         <div class='buttons_container'>
             <div class="buttons">
-                <button class="next_prev">PREV</button>
-                <button class="next_prev">NEXT</button>
+                <button id="prev" class="next_prev">PREV</button>
+                <button id="next" class="next_prev">NEXT</button>
             </div>
         </div>
         <div id="preview">
             <div class="one">
-                <img id="preview_pic" style="height:100%" alt="">
+                <img id="preview_pic" style="width:100%">
             </div>
             <div class="two">
                 <div id="comments"><br>
-                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
-                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
-                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
-                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
-                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
-                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
-                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
-                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
-                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
-                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
-                    <ul><li><span style="color:red">sdfsdfsdf - </span>asdfsfsdf sdfljsdlfsdfjs sdfljsdfljsdf sdflsdjfldsfjds sdfldjsfldsjfljdsf sdfldsjflsdjflsdf sdfljsdfljsdlfjsdlf sdlfjsdljflsdjf sdlfjsdljflsdjfdjs fsdlfjlsdfjsdlf</li></ul>
+                    
+                    
                 </div>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <p>comment here:</p>
+                <textarea name="comment_text" id="comment_text" cols="30" rows="6"></textarea>
+                <button id="send">sfsdf</button>
             </div>
             <img onclick="cancel(this)" id="cancel" src="./images/cancel.png" alt="">
         </div>
     </article>
      <script>
+
+            function replaceQueryParam(param, newval, search) {
+                var regex = new RegExp("([?;&])" + param + "[^&;]*[;&]?");
+                var query = search.replace(regex, "$1").replace(/&$/, '');
+
+                return (query.length > 2 ? query + "&" : "?") + (newval ? param + "=" + newval : '');
+            }
+
+            function commentUpdate(id_value) {
+                var xhr = new XMLHttpRequest();
+                    xhr.open('GET', 'test.php?id=' + id_value, true);
+                    xhr.setRequestHeader('Content-type','application/json');
+                    xhr.onreadystatechange = function() {
+                        if( xhr.readyState == 4 && xhr.status == 200) {
+                            console.log(xhr.responseText);
+                            b=xhr.responseText + "";
+                            b.replace(/<&#91;^>&#93;*>/g, "");
+                            document.getElementById('comments').innerHTML = b;
+                        }
+                    }
+                    xhr.send();
+            }
+
+
          window.addEventListener('load', function() {
             var images = document.getElementsByClassName('imge');
                 preview = document.getElementById('preview');
-
+            var b;
             for (var i = 0; i < images.length; i++) {
                 images[i].addEventListener('click', function(e){
                     preview.setAttribute('style', 'display:flex');
                     document.getElementById('preview_pic').setAttribute('src', this.firstChild.src);
+                    document.getElementById('preview_pic').setAttribute('alt', this.firstChild.id);
+                    commentUpdate(this.firstChild.id);
                 });
             }
 
+            document.getElementById('send').addEventListener('click', function () {
+                var text = document.getElementById('comment_text').value.trim();
+                if (text != '') {
+                    var json = {id: document.getElementById('preview_pic').alt,
+                                comment: text,
+                                madeby: '<?php echo $useranme; ?>'
+                            }
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'comments.php', true);
+                    xhr.setRequestHeader('Content-type','application/json');
+                    xhr.onreadystatechange = function(data) {
+                        if( xhr.readyState == 4 && xhr.status == 200) {
+                            console.log(data);
+                        }
+                    }
+                    xhr.send(JSON.stringify(json))
+                    document.getElementById('comment_text').value = '';
+                }
+                // commentUpdate(document.getElementById('preview_pic').id);
+            });
 
+            function getImagesForward(val, how_many) {
+                var json = {step: val}
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'get_pictures.php', true);
+                    xhr.setRequestHeader('Content-type','application/json');
+                    xhr.onreadystatechange = function(data) {
+                        if( xhr.readyState == 4 && xhr.status == 200) {
+                            console.log(xhr.responseText);
+                            b=xhr.responseText + "";
+                            b.replace(/<&#91;^>&#93;*>/g, "");
+                            document.getElementById('grid').innerHTML = '';
+                            document.getElementById('grid').innerHTML = b;
+                        }
+                    }
+                    xhr.send(JSON.stringify(json))
+            }
+            document.getElementById('next').addEventListener('click', function(){
+                var howm = '<?php echo $_SESSION['start'] ?>';
+                getImagesForward(1, howm);
+            });
+            document.getElementById('prev').addEventListener('click', function(){
+                var howm = '<?php echo $_SESSION['start'] ?>';
+                getImagesForward(0, howm);
+            });
          });
+
+         
+
          function cancel(x) {
             var win = document.getElementById('preview');
 
