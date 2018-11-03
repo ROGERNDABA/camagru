@@ -77,14 +77,12 @@
         <div id="grid">
             <?php
                 $i = 1;
-                if (isset($_SESSION) && isset($_SESSION['user'])) {
                 $stmt = $conn->prepare("SELECT `pic`, `likes`, `username`, `ID` FROM `images` ORDER BY `create_date` DESC");
                 $stmt->execute();
                 while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) && $i < 6) {
                     echo '<div class="imge"><img id="'.$row['ID'].'" src="data:image/png;base64,'.$row['pic'].'" style="height:90%;cursor:pointer" alt=""></div>';
                     $i++;
                 }
-            }
             ?>
         </div>
         <hr>
@@ -160,7 +158,8 @@
                     xhr.setRequestHeader('Content-type','application/json');
                     xhr.onreadystatechange = function(data) {
                         if( xhr.readyState == 4 && xhr.status == 200) {
-                            console.log(data);
+                            console.log(xhr.responseText
+                            );
                         }
                     }
                     xhr.send(JSON.stringify(json))
@@ -195,6 +194,13 @@
             });
          });
 
+         function comms(e) {
+                var preview = document.getElementById('preview');
+                preview.setAttribute('style', 'display:flex');
+                document.getElementById('preview_pic').setAttribute('src', e.src);
+                document.getElementById('preview_pic').setAttribute('alt', e.id);
+                commentUpdate(e.id);
+         }
          
 
          function cancel(x) {
