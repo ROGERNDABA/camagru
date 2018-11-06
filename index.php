@@ -6,4 +6,6 @@
  *    File: index.php
  *
  */
+    //GG
+    header('location: public.phtml');
 ?>
