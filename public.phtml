@@ -59,7 +59,7 @@
                             '<li><a href="#">account</a>
                             <ul>
                                 <li><a href="#">profile</a></li>
-                                <li><a href="#">setings</a></li>
+                                <li><a href="update_account.phtml">setings</a></li>
                                 <li><a href="forgot_password.phtml">password reset</a></li>
                             </ul>        
                             </li>'.
@@ -101,9 +101,9 @@
             <div class="two">
                 <div id="comments"><br>
                 </div>
-                <p style >comment here:</p>
+                <p style="color:#579ff1" >comment here:</p>
                 <textarea name="comment_text" id="comment_text" cols="30" rows="6"></textarea>
-                <button id="send">sfsdf</button>
+                <button id="send">send</button>
                 <button id='like_button'>
                     <span id='like_id'>
                     </span>
@@ -186,7 +186,6 @@
                     xhr.send(JSON.stringify(json))
                     document.getElementById('comment_text').value = '';
                 }
-                // commentUpdate(document.getElementById('preview_pic').id);
             });
 
             document.getElementById('like_button').addEventListener('click', function () {

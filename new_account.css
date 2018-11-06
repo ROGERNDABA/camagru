@@ -1,6 +1,6 @@
 body { background-color: black}
 
-label {
+form > label {
     position: relative;
     left: 3vw;
     font-family: Consolas;
@@ -28,12 +28,22 @@ meter[value="3"]::-webkit-meter-optimum-value { background: orange; }
 meter[value="4"]::-webkit-meter-optimum-value { background: green; }
 
 
+.check_box {
+    position: relative;
+    left: 3vw;
+    font-family: Consolas;
+    color: #579ff1;
+    /* height: 50px; */
+    display: inline;
+    /* background-color: yellow; */
+}
+
 
 span {
     color: red;
     font-size: 20px; 
 }
-input {
+form > input {
     background-color:  black;
     color: #579ff1;
     font-display: Consolas;
@@ -61,6 +71,9 @@ input {
     height: 800px;
 }
 
+/* input[type=checkbox] {
+    border: 
+} */
 
 input[type=submit] {
     border: 0;
@@ -71,6 +84,11 @@ input[type=submit] {
     display: inline-block;
     color: black;
 }
+
+/* .checkhere {
+    top 0;
+    left: 0;;
+} */
 .g-recaptcha {
     position: relative;
     transform: scale(0.7);
@@ -91,7 +109,7 @@ input[type=submit] {
     display: inline;
     top: 0px;
     font-family: Consolas;
-    font-size: 15px;
+    font-size: 13px;
     color: red;
     left: 3vw;
 }
@@ -110,7 +128,7 @@ input[type=submit] {
         font-size: 8px;
     }
 
-    input {
+    form >input {
         min-height: 26px;
         min-width: 200px;
         max-height: 22px;
