@@ -7,7 +7,7 @@
  *
  */
     include('./resizeClass.php');
-    include('./config/connect.php');
+    include('./config/database.php');
     session_start();
 
     $s    = $_POST['src'];
@@ -27,7 +27,7 @@
         $img_data = ob_get_contents();
     ob_end_clean();
     
-    $conn = conOpen();
+    $conn = db_connect();
     $image = base64_encode($img_data);
     $likes = 0;
     $public = '0';

@@ -1,7 +1,7 @@
 <?php
-    include('./config/connect.php');
+    include('./config/database.php');
     session_start();
-    $conn = conOpen();
+    $conn = db_connect();
     if (isset($_SESSION) && isset($_SESSION['user'])) {
         $stmt = $conn->prepare("SELECT `comment`, `madeby` FROM `comments` WHERE `ID` = :id ORDER BY `create_date` DESC");
         $id = intval($_GET['id']);

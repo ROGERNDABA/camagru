@@ -1,7 +1,7 @@
 <?php
-    include("./config/connect.php");
+    include("./config/database.php");
     
-    $conn = conOpen();
+    $conn = db_connect();
     $name = stripslashes($_POST['name']);
     $surname  = stripslashes($_POST['surname']);
     $username = stripslashes($_POST['login']);

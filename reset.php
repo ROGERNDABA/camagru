@@ -6,10 +6,10 @@
  *    File: reset.php
  *
  */
+include ("./config/database.php");
+session_start();
 
-    include ("./config/connect.php");
-
-    $conn = conOpen();
+    $conn = db_connect();
 
     if (isset($_POST) && isset($_GET)) {
         $username = base64_decode($_GET['usr']);
@@ -26,10 +26,14 @@
                         header("location: reset.phtml?usr=".$_GET['usr']."&tok=".$_GET['tok']."&msg=".base64_encode('password can\'t be the same as old password'));
                         exit;
                     }
-                    $q = "UPDATE `accounts` SET `passwd`= \"".password_hash($passwd, PASSWORD_DEFAULT)."\"";
-                    $re = $conn->query($q);
-                    if ($re)
+                    $hash = password_hash($passwd, PASSWORD_DEFAULT);
+                    $stmt = $conn->prepare("UPDATE `accounts` SET `passwd`= :passwd");
+                    $stmt->execute(array(':passwd' => $hash));
+                    if ($stmt) {
+                        if (isset($_SESSION))
+                            session_destroy();
                         header("location: login.phtml?msgv=".base64_encode("password successfuly changed :)"));
+                    }
             }
         }
     }

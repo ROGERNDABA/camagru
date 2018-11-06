@@ -3,7 +3,7 @@
  *
  *    File created by Roger Ndaba
  *    Project: camagru
- *    File: ./config/connect.php
+ *    File: ./config/database.php
  *
  */
 
@@ -26,7 +26,7 @@ class Database {
     }
 }
 
-function conOpen() {
+function db_connect() {
     $password = "rooty";
     
     $db = new Database();

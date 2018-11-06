@@ -10,10 +10,10 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-include("./config/connect.php");
+include("./config/database.php");
 require 'vendor/autoload.php';
 
-$conn = conOpen();
+$conn = db_connect();
 $email = $_POST['email'];
 
 if(!$email)

@@ -6,11 +6,11 @@
  *    File: login.phtml
  *
  */
-    include("./config/connect.php");
+    include("./config/database.php");
 
     session_start();
     if (isset($_GET['ok'])) {
-        $conn = conOpen();
+        $conn = db_connect();
         $tok = $_GET['ok'];
         $user = base64_decode($_GET['usr']);
         $q = "SELECT `token` FROM `accounts` WHERE `username` = \"$user\"";

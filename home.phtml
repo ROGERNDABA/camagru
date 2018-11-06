@@ -6,8 +6,8 @@
  *    File: home.phtml
  *
  */
-    include('./config/connect.php');
-    $conn = conOpen();
+    include('./config/database.php');
+    $conn = db_connect();
     session_start();
     $user = $_SESSION['user'];
     if ($user) {

@@ -6,9 +6,9 @@
  *    File: public.phtml
  *
  */
-    include('./config/connect.php');
+    include('./config/database.php');
     session_start();
-    $conn = conOpen();
+    $conn = db_connect();
 
     $stmt = $conn->prepare("SELECT * FROM `images`");
     $stmt->execute();
@@ -80,8 +80,8 @@
                 $i = 1;
                 $stmt = $conn->prepare("SELECT `pic`, `likes`, `username`, `ID` FROM `images` ORDER BY `create_date` DESC");
                 $stmt->execute();
-                while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) && $i < 6) {
-                    echo '<div class="imge"><img id="'.$row['ID'].'" src="data:image/png;base64,'.$row['pic'].'" style="height:90%;cursor:pointer" alt=""></div>';
+                while (($row = $stmt->fetch(PDO::FETCH_ASSOC)) && $i < 6) {˝˝
+                    echo '<div class="imge"><img id="'.$row['ID'].'" src="data:image/png;base64,'.$row['pic'].'" style="height:100%;cursor:pointer" alt=""></div>';
                     $i++;
                 }
             ?>

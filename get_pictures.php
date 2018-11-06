@@ -6,9 +6,9 @@
  *    File: get_pictures.php
  *
  */
-    include ('./config/connect.php');
+    include ('./config/database.php');
     session_start();
-    $conn = conOpen();
+    $conn = db_connect();
     // print_r($_SESSION);
     $i = 1;
     $headers = getallheaders();
@@ -31,7 +31,7 @@
                 $stmt->bindParam(2, $end, PDO::PARAM_INT);
                 $stmt->execute();
                 while (($row = $stmt->fetch(PDO::FETCH_ASSOC))) {
-                    echo '<div class="imge"><img id="'.$row['ID'].'" src="data:image/png;base64,'.$row['pic'].'" style="height:90%;cursor:pointer" alt="" onclick="comms(this)"></div>';
+                    echo '<div class="imge"><img id="'.$row['ID'].'" src="data:image/png;base64,'.$row['pic'].'" style="height:100%;cursor:pointer" alt="" onclick="comms(this)"></div>';
                 }
             }
         }

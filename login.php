@@ -6,10 +6,10 @@
  *    File: login.php
  *
  */
-include ("./config/connect.php");
+include ("./config/database.php");
 
 $q = "SELECT `email`, `username`, `passwd`, `isusr` FROM accounts";
-$conn = conOpen();
+$conn = db_connect();
 $re = $conn->query($q);
 $username = $_POST['login'];
 $passwd = $_POST['passwd'];

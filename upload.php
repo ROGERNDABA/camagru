@@ -7,10 +7,10 @@
  *
  */
 
-    include("./config/connect.php");
+    include("./config/database.php");
     
 
-    $conn = conOpen();
+    $conn = db_connect();
 
     if (isset($_POST['upload'])) {
         // Get image name

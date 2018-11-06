@@ -11,10 +11,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require 'vendor/autoload.php';
-    include('./config/connect.php');
+    include('./config/database.php');
     session_start();
 
-    $conn = conOpen();
+    $conn = db_connect();
     $headers = getallheaders();
     if ($headers["Content-type"] == "application/json") {
         $_POST = json_decode(file_get_contents("php://input"), true);

@@ -1,6 +1,6 @@
 <?php
-include './config/connect.php';
-$conn = conOpen();
+include './config/database.php';
+$conn = db_connect();
 $headers = getallheaders();
 
 function updateLikes($id, $conn) {
