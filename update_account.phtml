@@ -45,16 +45,18 @@
 
                 <input type='submit' name='submit' id="submit" value='UPDATE' disabled='disabled'/>
                 <script>
-
+                    var count = 0;
                     window.addEventListener("load", function() {
                         var boxes = document . getElementsByClassName('checkhere');
 
                         for (var i = 0; i < boxes.length; i++) {
                                 boxes[i].addEventListener('click', function (e) {
                                     if (this.checked) {
+                                        count++;
                                         document.getElementById(this.value.replace('edit_', '')).removeAttribute('disabled');
                                     }
                                     else {
+                                        count--;
                                         document.getElementById(this.value.replace('edit_', '')).setAttribute('disabled', 'disabled');
                                     }
                             });
@@ -63,28 +65,24 @@
                     function check(){
                         var reg = /^[a-zA-Z\-]+$/,
                         regem = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
-                        err = document.getElementById('error'),
                         usr = document.getElementById('login'),
                         fname = document.getElementById('name'),
                         lname = document.getElementById('surname'),
                         email = document.getElementById('email'),
                         tex = '';
-                        if (usr.value !='' && !usr.value.match(reg))
+                        if (usr.value !='' && !usr.value.match(reg)) {
                             tex += 'alphabets and numbers please in username filed<br>';
-                        if (fname.value !='' && !fname.value.match(reg))
-                            tex += 'only numbers and letters on name field.<br>';
-                        if (lname.value !='' && !lname.value.match(reg))
-                            tex += 'alphabets and numbers please in lastname filed<br>';
-                        if (email.value !='' && !regem.test(email.value))
-                            tex += 'email should have formart login@domain.ext<br>';
-                        document.getElementById('error_msg').innerHTML = tex;
-                        var boxes = document . getElementsByClassName('checkhere');
-
-                        for (var i = 0; i < boxes.length; i++) {
-                            if (boxes[i].checked && !document.getElementById(boxes[i].value.replace('edit_', '')).value) {
-                                document.getElementById('submit').removeAttribute('disabled');
-                            }
                         }
+                        if (fname.value !='' && !fname.value.match(reg)) {
+                            tex += 'only numbers and letters on name field.<br>';
+                        }
+                        if (lname.value !='' && !lname.value.match(reg)) {
+                            tex += 'alphabets and numbers please in lastname filed<br>';
+                        }
+                        if (email.value !='' && !regem.test(email.value)) {
+                            tex += 'email should have formart login@domain.ext<br>';
+                        }
+                        document.getElementById('error_msg').innerHTML = tex;
                     }
                 </script>
             </form>

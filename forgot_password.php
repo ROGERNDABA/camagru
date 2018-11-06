@@ -10,7 +10,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-include("connect.php");
+include("./config/connect.php");
 require 'vendor/autoload.php';
 
 $conn = conOpen();

@@ -3,7 +3,7 @@
  *
  *    File created by Roger Ndaba
  *    Project: camagru
- *    File: connect.php
+ *    File: ./config/connect.php
  *
  */
 

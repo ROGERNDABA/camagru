@@ -1,5 +1,5 @@
 <?php
-    include("connect.php");
+    include("./config/connect.php");
     
     $conn = conOpen();
     $name = stripslashes($_POST['name']);

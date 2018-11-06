@@ -1,5 +1,5 @@
 <?php
-    include('connect.php');
+    include('./config/connect.php');
     session_start();
     $conn = conOpen();
     if (isset($_SESSION) && isset($_SESSION['user'])) {

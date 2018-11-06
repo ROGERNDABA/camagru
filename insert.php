@@ -7,7 +7,7 @@
  *
  */
     include('./resizeClass.php');
-    include('connect.php');
+    include('./config/connect.php');
     session_start();
 
     $s    = $_POST['src'];

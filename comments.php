@@ -11,7 +11,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require 'vendor/autoload.php';
-    include('connect.php');
+    include('./config/connect.php');
     session_start();
 
     $conn = conOpen();
@@ -51,7 +51,7 @@ require 'vendor/autoload.php';
         $mail->Username = "camagrurmdaba@gmail.com";
         $mail->Password = "rootyroot";
         $mail->SetFrom("rogerndaba@gmail.com", "Camagru Team");
-        $mail->Subject = "Verify email";
+        $mail->Subject = "new comment alert";
         $mail->Body = "comment in one of your photos.<br>From: ".$madeby." - <br><i style='color:red'>".$comment."</i><br>";
         $mail->AddAddress($email);
 

@@ -6,7 +6,7 @@
  *    File: login.php
  *
  */
-include ("connect.php");
+include ("./config/connect.php");
 
 $q = "SELECT `username`, `passwd`, `isusr` FROM accounts";
 $conn = conOpen();
@@ -37,7 +37,6 @@ else
                 header("location:login.phtml?msg=".$msgEncoded."&usr=".$username);
                 exit();
             }
-            session_destroy();
             session_start();
             $_SESSION['user'] = $username;
             header("Location: public.phtml");

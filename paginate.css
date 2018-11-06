@@ -90,6 +90,7 @@ textarea {
     padding: 10px;
     width: 450px;
     background-color: black;
+    display: none;
 }
 
 
@@ -115,7 +116,7 @@ textarea {
     position: absolute;
     top: 0;
     margin: 0 auto;
-    background-color: tomato;
+    background-color: black;
     width: 1000px;
     display: none;
     height: 500px;

@@ -6,7 +6,7 @@
  *    File: get_pictures.php
  *
  */
-    include ('connect.php');
+    include ('./config/connect.php');
     session_start();
     $conn = conOpen();
     // print_r($_SESSION);

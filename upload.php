@@ -7,7 +7,7 @@
  *
  */
 
-    include("connect.php");
+    include("./config/connect.php");
     
 
     $conn = conOpen();

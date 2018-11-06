@@ -92,7 +92,6 @@ document.getElementById("save").addEventListener("click", function () {
 
         document.getElementById('re').innerHTML = toto;
         issaved = loopFrame;
-        load('home.phtml', document.getElementById('scoop'));
     }
 
 }

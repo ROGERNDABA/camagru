@@ -6,7 +6,7 @@
  *    File: home.phtml
  *
  */
-    include('connect.php');
+    include('./config/connect.php');
     $conn = conOpen();
     session_start();
     $user = $_SESSION['user'];

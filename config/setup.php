@@ -7,10 +7,13 @@
  *
  */
 
+    session_start();
+    session_destroy();
+    unset($_SESSION);
     if(!isset($_GET['login'])) {
         echo '<script type="text/javascript"> 
         var value = prompt("Input a value", "");
-        window.location.href = "install.php?login="+encodeURIComponent(value);
+        window.location.href = "setup.php?login="+encodeURIComponent(value);
         </script>';
     }
     
@@ -33,20 +36,24 @@
         }
     }
 
-    $servername = "localhost";
-    $username = "root";
+    if (isset($_GET['login'])) {
+        $servername = "localhost";
+        $username = "root";
     $password = $_GET['login'];
-
-    $db = new Database();
-    $conn = $db->getConnection($password);
-    
-    $conn->query("DROP DATABASE IF EXISTS camagru");
-    $sql = "CREATE DATABASE camagru";
-    $conn->query($sql);
-    $conn->exec("use camagru");
-    $pw = password_hash('dontunlock', PASSWORD_DEFAULT);
-    $tok = rand();
-    $conn->query("CREATE TABLE IF NOT EXISTS camagru . accounts (
+        $database = 'camagru';
+        
+        $db = new Database();
+        $conn = $db->getConnection($password);
+        
+        $conn->query("DROP DATABASE camagru");
+        
+        $conn->query('CREATE DATABASE camagru');
+        
+        $conn->query("use camagru");
+        
+        $pw = password_hash('dontunlock', PASSWORD_DEFAULT);
+        $tok = rand();
+        $conn->query("CREATE TABLE IF NOT EXISTS camagru . accounts (
                 username varchar(32) NOT NULL,
                 name varchar(32) NOT NULL,
                 surname varchar (32) NOT NULL,
@@ -67,14 +74,7 @@
                                                                     `comment` VARCHAR(200) NULL DEFAULT NULL,
                                                                     `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                                                                     `ID` INT NOT NULL) ENGINE = InnoDB;');
-    header("Location: index.html");
+    header("Location: ../index.html");
     $conn = null;
+}
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-  <title></title>
-</head>
-<body>
-</body>
-</html>
