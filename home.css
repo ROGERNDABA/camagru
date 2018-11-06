@@ -11,7 +11,9 @@ body {
 
 #myCanvas {
     width: 100%;
-    background-color: orange;
+    background-image: url('./images/cam.png');
+    opacity: 2;
+    background-size: 100%;
     height: 340px;
     z-index: -1;
 }
@@ -184,7 +186,7 @@ video {
 }
 
 .vid {
-    background-color: violet;
+    /* background-color: violet; */
     position: relative;
     left: 0;
     width: 100%;

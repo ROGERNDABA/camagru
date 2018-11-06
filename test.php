@@ -7,7 +7,7 @@
         $id = intval($_GET['id']);
         $stmt->execute(array(':id' => $id));
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo '<ul><li><span style="color:red">'.$row['madeby'].' - </span>'.$row['comment'].'</li></ul>';
+            echo '<ul><li style="color:#579ff1"><span style="color:red">'.$row['madeby'].' - </span>'.$row['comment'].'</li></ul>';
         }
     }
 ?>

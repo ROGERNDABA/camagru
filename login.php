@@ -8,7 +8,7 @@
  */
 include ("./config/connect.php");
 
-$q = "SELECT `username`, `passwd`, `isusr` FROM accounts";
+$q = "SELECT `email`, `username`, `passwd`, `isusr` FROM accounts";
 $conn = conOpen();
 $re = $conn->query($q);
 $username = $_POST['login'];
@@ -30,7 +30,7 @@ else
                 header("location: admin_login.php");
                 exit();
         }
-        else if (!strcmp($row['username'], $username) && password_verify($passwd, $row['passwd'])) {
+        else if ((!strcmp($row['username'], $username) || !strcmp($row['email'], $username)) && password_verify($passwd, $row['passwd'])) {
             if ($row['isusr'] === '0') {
                 $msg = "please confirm email";
                 $msgEncoded = base64_encode($msg);

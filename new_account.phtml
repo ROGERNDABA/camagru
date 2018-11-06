@@ -16,9 +16,10 @@
     <title>new_account</title>
 </head>
 <body>
+    <a href="public.phtml"> <img src="./images/camagru.png" alt="" style="position:absolute;width:50px; height:50px;left:0"> </a>
     <div class="info_box">
         <div class="info">
-            <span class="error_msg">
+            <span class="error_msg" id="error_msg">
                 <?php
                     if(isset($_GET['msg'])) {
                         $msg = base64_decode($_GET['msg']);
@@ -31,42 +32,79 @@
                            
                 <input type='hidden' name='submitted' id='submitted' value='1'/>
                 <label for='name' >Name<span>*</span></label><br>
-                <input type='text' name='name' id='name'  maxlength="50" pattern="[a-zA-Z0-9_]+$" title="Only letters, numbers and underscores"/><br>
+                <input type='text' name='name' id='name'  maxlength="50" pattern="[a-zA-Z0-9_]+$" oninput="check()" title="Only letters, numbers and underscores"/><br>
 
                 <label for='surname' >Surname<span>*</span></label>
-                <input type='text' name='surname' id='surname' maxlength="50" pattern="[a-zA-Z0-9_]+$" title="Only letters, numbers and underscores"/><br>
+                <input type='text' name='surname' id='surname' maxlength="50" pattern="[a-zA-Z0-9_]+$" oninput="check()" title="Only letters, numbers and underscores"/><br>
 
                 <label for='login' >Username<span>*</span></label><br>
-                <input type='text' name='login' id='login'  maxlength="50" pattern="[a-zA-Z0-9_]+$" title="Only letters, numbers and underscores"/><br>
+                <input type='text' name='login' id='login'  maxlength="50" pattern="[a-zA-Z0-9_]+$" oninput="check()" title="Only letters, numbers and underscores"/><br>
 
                 <label for='passwd' >Password<span>*</span></label>
-                <input type='password' name='passwd' id='passwd' maxlength="50" autocomplete="false" onkeyup="strength()">
+                <input type='password' name='passwd' id='passwd' maxlength="50" autocomplete="false"  oninput="sMeter(this.value)">
                 <script>
                 
-                var counter = 0;
-                function strength() {
-                var str = document.getElementById("strength");
-                var string = document.getElementById("passwd").value;
-                    if (/[a-z]/.test(string))
-                        str.value++;
-                    if (/[A-Z]/.test(string))
-                        str.value = 2;
-                    if (/[0-9]/.test(string))
-                        str.value = 3;
-                    if (/[!@#$&*]/.test(string))
-                        str.value = 4;
+                var ok = 0;
+
+                window.addEventListener('mousedown', function () {
+                    var err = document.getElementById('error_msg');
+                    if (err.innerHTML) {
+                        var newURL = location.href.split("?")[0];
+                        window.history.pushState('object', document.title, newURL);
+                        err.innerHTML = '';
+                    }
+                });
+
+                function sMeter(password) {
+                    var level = 0;
+                    level += (password.length > 6) ? 1 : 0;
+                    level += /[!@#$%^&*?_~]{1,}/.test(password) ? 1 : 0;
+                    level += /[a-z]{2,}/.test(password) ? 1 : 0;
+                    level += /[A-Z]{1,}/.test(password) ? 1 : 0;
+                    level += /[0-9]{1,}/.test(password) ? 1 : 0;
+                    document.getElementById('strength').value = level;
+                    if (level >= 4) ok++;
+                    else ok = 0;
                 }
+
+                function check() {
+                        var reg = /^[a-z0-9]+$/i,
+                        regem = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
+                        usr = document.getElementById('login'),
+                        fname = document.getElementById('name'),
+                        lname = document.getElementById('surname'),
+                        email = document.getElementById('email'),
+                        tex = '';
+                        if (usr.value !='' && !usr.value.match(reg)) {
+                            tex += '- only numbers and letters on username field.<br>';
+                        }
+                        if (fname.value !='' && !fname.value.match(reg)) {
+                            tex += '- only numbers and letters on name field.<br>';
+                        }
+                        if (lname.value !='' && !lname.value.match(reg)) {
+                            tex += '- only numbers and letters on surname field.filed<br>';
+                        }
+                        if (email.value !='' && !regem.test(email.value)) {
+                            tex += '- email should have formart login@domain.ext<br>';
+                        }
+                        document.getElementById('error_msg').innerHTML = tex;
+                        if (usr.value && fname.value && lname.value && email.value) {
+                            document.getElementById('submit').removeAttribute('disabled');
+                        } else {
+                            document.getElementById('submit').setAttribute('disabled', 'disabled');
+                        }
+                    }
                 
                 </script>
-                <meter max="4" id="strength"  value="0"></meter><br><br>
+                <meter max="5" id="strength"  value="0"></meter><br><br>
 
                 <label for='email' >Email<span>*</span></label><br>
-                <input type='text' name='email' id='email'  maxlength="50" /><br>
+                <input type='text' name='email' id='email'  maxlength="50" oninput="check()"/><br>
 
                 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
                 <div class="g-recaptcha" data-sitekey="6LeaWnYUAAAAAFuFapEu-y1BjnRNHLpHXv4WJ8hV" data-theme="dark" data-size="normal"></div>
 
-                <input type='submit' name='submit' value='CREATE'/>
+                <input id='submit' type='submit' name='submit' value='CREATE' disabled/>
             </form>
         </div>
     </div>

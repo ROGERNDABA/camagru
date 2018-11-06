@@ -94,11 +94,23 @@
             exit();
         }
     }
+    $is = '0';
+
     $rand = rand();
     $hash = password_hash($passwd, PASSWORD_DEFAULT);
     $q =    "INSERT INTO `accounts` (`username`, `name`, `surname`, `email`, `passwd`, `token`,`isusr`, `isadmin`)
-            VALUES (\"$username\", \"$name\", \"$surname\" , \"$email\", \"$hash\", $rand, '0', \"0\")";
-    $re = $conn->query($q);
+            VALUES (:username , :name, :surname, :email, :passwd, :token, :isusr, :isadmin)";
+    $stmt = $conn->prepare($q);
+    $stmt->execute(array( ':username' => $username,
+                                ':name' => $name,
+                                ':surname' => $surname,
+                                ':email' => $email,
+                                ':passwd' => $hash,
+                                ':token' => $rand,
+                                ':isusr' => $is,
+                                ':isadmin' => $is
+                        )
+            );
     $re = null;
     $conn = null;
     header('Location: confirm_email.php?confirm='.base64_encode($email)."&user=".hash('whirlpool', $rand)."&usr=".base64_encode($username));

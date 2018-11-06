@@ -22,10 +22,11 @@ meter::-webkit-meter-bar {
     background-color: rgba(0, 0, 0, 0.1);
   }
 
-meter[value="1"]::-webkit-meter-optimum-value { background: red; }
-meter[value="2"]::-webkit-meter-optimum-value { background: yellow; }
-meter[value="3"]::-webkit-meter-optimum-value { background: orange; }
-meter[value="4"]::-webkit-meter-optimum-value { background: green; }
+meter[value="1"]::-webkit-meter-optimum-value { background: grey; }
+meter[value="2"]::-webkit-meter-optimum-value { background: red; }
+meter[value="3"]::-webkit-meter-optimum-value { background: yellow; }
+meter[value="4"]::-webkit-meter-optimum-value { background: orange; }
+meter[value="5"]::-webkit-meter-optimum-value { background: green; }
 
 
 .check_box {
