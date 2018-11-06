@@ -3,12 +3,13 @@ header {
     background-color: #579FF1;
     padding: 20px;
     height: 80px;
-  }
+}
 
-  body {background-color: black;}
-  /* .mySlides {
-} */
-#myCanvas{
+body {
+    background-color: black;
+}
+
+#myCanvas {
     width: 100%;
     background-color: orange;
     height: 340px;
@@ -19,16 +20,17 @@ header {
     width: 20%;
     height: 25%;
 }
+
 #stickers {
     margin: 0 auto;
-      position: absolute;
-        overflow-y: scroll;
-        width: 100%;
+    position: absolute;
+    overflow-y: scroll;
+    width: 100%;
     background-color: black;
     height: 340px;
-  }
+}
 
-#img_div{
+#img_div {
     background-color: #bf6020;
     width: 300px;
     height: 200px;
@@ -37,7 +39,9 @@ header {
     border: 1px solid #cbcbcb;
 }
 
-#save {width: 96%;}
+#save {
+    width: 96%;
+}
 
 #drag-img {
     cursor: -webkit-grab;
@@ -80,8 +84,8 @@ header {
 
 * {
     border-radius: 3px;
-    font-family:
-    Consolas; text-decoration: none;
+    font-family: Consolas;
+    text-decoration: none;
     outline-width: 1px;
 }
 
@@ -121,22 +125,34 @@ header {
     height: 390px;
     border: 2px solid #579FF1;
 }
+
 .column {
     width: 500px;
     margin: 0 auto;
     height: auto;
     z-index: 2;
 }
-    
+
 
 #icon {
     width: 85px;
     height: 80px;
 }
 
-#c1 {background-image: url('images/start.png'); background-size: 40px 86%;}
-#c2 {background-image: url('./images/snap.png');  background-size: 65px 130%;}
-#c3 {background-image: url('images/video.png'); background-size: 40px 90%;}
+#c1 {
+    background-image: url('images/start.png');
+    background-size: 40px 86%;
+}
+
+#c2 {
+    background-image: url('./images/snap.png');
+    background-size: 65px 130%;
+}
+
+#c3 {
+    background-image: url('images/video.png');
+    background-size: 40px 90%;
+}
 
 .left {
     position: relative;
@@ -180,38 +196,42 @@ video {
     display: table;
     clear: both;
 }
-.right {height: 40vw;}
+
+.right {
+    height: 40vw;
+}
+
 article {
     position: relative;
-  grid-area: content;
-  background-color: #579FF1;
-  padding: 10px;
+    grid-area: content;
+    background-color: #579FF1;
+    padding: 10px;
 }
 
 aside {
-  position: relative;
-  grid-area: sidebar;
-  background-color: black;
-  border: 2px solid #579FF1;
-  height: 100%;
+    position: relative;
+    grid-area: sidebar;
+    background-color: black;
+    border: 2px solid #579FF1;
+    height: 100%;
 }
 
 footer {
-  padding: 20px;
-  grid-area: footer;
-  border: 2px solid #579FF1;
-  background-color: black;
+    padding: 20px;
+    grid-area: footer;
+    border: 2px solid #579FF1;
+    background-color: black;
 }
 
 .wrapper {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-rows: 1fr 9fr 1fr;
-  grid-template-columns: 3fr 1fr;
-  grid-template-areas:
-    "header  header"
-    "sidebar content"
-    "footer  footer";
+    display: grid;
+    grid-gap: 10px;
+    grid-template-rows: 1fr 9fr 1fr;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+        "header  header"
+        "sidebar content"
+        "footer  footer";
     height: 100%;
 }
 
@@ -232,13 +252,14 @@ input[type=button] {
     font-size: calc(.1vw + .1vh + 1vmin);
 }
 
-.ico{
+.ico {
     position: relative;
     float: left;
     background-color: black;
     width: 85px;
     height: 100%;
 }
+
 .wrapper-content {
     margin: 0 auto;
     margin-top: 20px;
@@ -247,54 +268,140 @@ input[type=button] {
     text-align: center;
 }
 
-#form {height: 350px;}
+#form {
+    height: 350px;
+}
 
-  @media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1200px) {
     .wrapper {
         grid-template-columns: 2fr;
         grid-template-areas:
-        "header  header"
-        "sidebar sidebar"
-        "content content"
-        "footer  footer";
+            "header  header"
+            "sidebar sidebar"
+            "content content"
+            "footer  footer";
     }
-    #stickers { height: 330px;}
-    * { border-radius: 2px;}
-    .column {width: 500px;}  
-    .vid {height: 330px;}
-    .preview {height: 380px;}
-    .left {height: 380px;}
-    .vid {height: 330px;}
-    #myCanvas {height: 330px;}
-    #overlay {height: 330px;}
-    #form {height: 300px;}
-    #c1 {background-image: url('images/start.png'); background-size: 40px 90%;}
-    #c2 {background-image: url('./images/snap.png');  background-size: 75px 140%;}
-    #c3 {background-image: url('images/video.png'); background-size: 40px 100%;}
+
+    #stickers {
+        height: 330px;
+    }
+
+    * {
+        border-radius: 2px;
+    }
+
+    .column {
+        width: 500px;
+    }
+
+    .vid {
+        height: 330px;
+    }
+
+    .preview {
+        height: 380px;
+    }
+
+    .left {
+        height: 380px;
+    }
+
+    .vid {
+        height: 330px;
+    }
+
+    #myCanvas {
+        height: 330px;
+    }
+
+    #overlay {
+        height: 330px;
+    }
+
+    #form {
+        height: 300px;
+    }
+
+    #c1 {
+        background-image: url('images/start.png');
+        background-size: 40px 90%;
+    }
+
+    #c2 {
+        background-image: url('./images/snap.png');
+        background-size: 75px 140%;
+    }
+
+    #c3 {
+        background-image: url('images/video.png');
+        background-size: 40px 100%;
+    }
 }
 
 @media only screen and (max-width: 500px) {
-    aside {width: 98%; }   
-    #myCanvas {height: 238px;}
-    #c1 {background-image: url('images/start.png'); background-size: 25px 76%;}
-    #c2 {background-image: url('./images/snap.png');  background-size: 48px 130%;}
-    #c3 {background-image: url('images/video.png'); background-size: 28px 94%;}
+    aside {
+        width: 98%;
+    }
 
-    #stickers {height: 125px;}
-    .mySlides {width: 10%;}
-    * { border-radius: 1px;}
+    #myCanvas {
+        height: 238px;
+    }
+
+    #c1 {
+        background-image: url('images/start.png');
+        background-size: 25px 76%;
+    }
+
+    #c2 {
+        background-image: url('./images/snap.png');
+        background-size: 48px 130%;
+    }
+
+    #c3 {
+        background-image: url('images/video.png');
+        background-size: 28px 94%;
+    }
+
+    #stickers {
+        height: 125px;
+    }
+
+    .mySlides {
+        width: 10%;
+    }
+
+    * {
+        border-radius: 1px;
+    }
 
     #form {
         width: 95%;
         height: 290px;
     }
 
-    .ico {width: 50px;}
-    .left {height: 275px;}
-    .wrapper-content {width: 100%;}
-    .vid { height: 240px;}
-    aside {border: 0;}
-    #overlay {height: 238px;}
+    .ico {
+        width: 50px;
+    }
+
+    .left {
+        height: 275px;
+    }
+
+    .wrapper-content {
+        width: 100%;
+    }
+
+    .vid {
+        height: 240px;
+    }
+
+    aside {
+        border: 0;
+    }
+
+    #overlay {
+        height: 238px;
+    }
 
     header {
         padding: 5px;
@@ -302,10 +409,27 @@ input[type=button] {
         width: 96%;
     }
 
-    footer {width: 88%;}
-    article {width: 94%;}
-    .column { width: 100%;}
-    .buttons {height: 35px;}
-    .preview {height: 160px;}
-    #drag-img {width: 50px;}
+    footer {
+        width: 88%;
+    }
+
+    article {
+        width: 94%;
+    }
+
+    .column {
+        width: 100%;
+    }
+
+    .buttons {
+        height: 35px;
+    }
+
+    .preview {
+        height: 160px;
+    }
+
+    #drag-img {
+        width: 50px;
+    }
 }

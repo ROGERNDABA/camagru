@@ -60,20 +60,6 @@ document.getElementById("c1").addEventListener("click", function(){
             }
 });
 
-
-// function load(url, element) {
-//     req = new XMLHttpRequest();
-
-//     req.onreadystatechange = function() {
-//         if (this.readyState == 4 && this.status == 200) {
-//             console.log(req.responseText);
-//         }
-//     };
-//     req.open("GET", url, true);
-//     req.send(null); 
-// }
-
-
 document.getElementById("save").addEventListener("click", function () {
     var toto;
      var drg = document.getElementById('drag-img');

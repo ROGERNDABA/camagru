@@ -1,11 +1,17 @@
-* {font-family: Consolas;text-decoration: none;}
-*:focus {outline:none;}
-
-body { 
-     background-color: black;
+* {
+    font-family: Consolas;
+    text-decoration: none;
 }
-.login_class
-{
+
+*:focus {
+    outline: none;
+}
+
+body {
+    background-color: black;
+}
+
+.login_class {
     position: relative;
     top: 25vh;
     margin: 0 auto;
@@ -13,8 +19,7 @@ body {
     height: 500px;
 }
 
-.login_container
-{
+.login_container {
     position: relative;
     text-align: center;
     margin: 0 auto;
@@ -22,8 +27,7 @@ body {
     width: 550px;
 }
 
-.error_msg
-{
+.error_msg {
     position: relative;
     top: 75px;
     left: -85px;
@@ -32,8 +36,7 @@ body {
     color: red;
 }
 
-.verify
-{
+.verify {
     /* text-align: center; */
     position: relative;
     top: 75px;
@@ -44,8 +47,7 @@ body {
     /* left: -2vw; */
 }
 
-input
-{
+input {
     background-color: black;
     position: relative;
     display: flex;
@@ -61,16 +63,14 @@ input
     border-radius: 4px;
 }
 
-input[type=submit]
-{
+input[type=submit] {
     display: block;
     text-align: center;
     background-color: #579ff1;
     color: black;
 }
 
-.create_account
-{
+.create_account {
     position: relative;
     top: 100px;
     font-family: Consolas;
@@ -81,8 +81,8 @@ input[type=submit]
 
 @media only screen and (max-width: 750px) {
     .login_container {
-    width: 400px;
-    height: 100%;
+        width: 400px;
+        height: 100%;
     }
 
     input {
@@ -92,13 +92,19 @@ input[type=submit]
         margin-left: 50px;
     }
 
-    .verify{font-size: 7.6px;}
+    .verify {
+        font-size: 7.6px;
+    }
 
-    .login_class { height: 350px; }
+    .login_class {
+        height: 350px;
+    }
 
-    .error_msg {font-size: 8px;}
+    .error_msg {
+        font-size: 8px;
+    }
 
-    .create_account{
+    .create_account {
         top: 80px;
         font-size: 10px;
     }

@@ -18,6 +18,7 @@
 ?>
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,48 +29,49 @@
     <link rel="icon" href="./images/camagru.png">
     <title>Camagru Public</title>
 
-
 </head>
+
 <body>
     <div class="icon_wrapper">
         <div class="icon">
-        <a href="index.html"><img src="./images/camagru.png" class="ims"></a>    
+            <a href="index.html"><img src="./images/camagru.png" class="ims"></a>
             <div class="profile">
                 <div class="pro_ico"><img src="./images/profile.png" style="width:100%;height:100%"></div>
-                <p class="username"><?php echo $_SESSION['user'] ?></p>
+                <p class="username">
+                    <?php echo $_SESSION['user'] ?>
+                </p>
             </div>
         </div>
     </div>
     <?php if (isset($_GET) && isset($_GET['bye'])){ echo "<div id='bye'>".$_GET['bye']."</div>"; unset($_GET['bye']); session_destroy();}?>
-<div id="container">
-    <nav>
-        <ul>
-            <li><a href="#">home</a>
-                <ul>
-                    <li><a href="login.phtml">LOGIN</a></li>
-                    <li><a href="new_account.phtml">SIGN UP</a></li>
-                </ul>
-            </li>
-            
-            <?php
-                if ($_SESSION['user'])
-                    echo 
-                        '<li><a href="#">account</a>
-                        <ul>
-                            <li><a href="#">profile</a></li>
-                            <li><a href="#">setings</a></li>
-                            <li><a href="forgot_password.phtml">password reset</a></li>
-                        </ul>        
-                    </li>'.
-                    '<li><a href="home.phtml">my studio</a>';
-            ?>
-            </li>
-            <li><a href="#">Inspiration</a></li>
-            <li><a href="#">Contact</a></li>
-            <?php if(isset($_SESSION) && $_SESSION['user']) echo "<li id='logout' onclick='remove()'><a style='background-color:white;cursor:pointer'>LOGOUT</a></li>" ?>
-        </ul>
-    </nav>
-</div>
+    <div id="container">
+        <nav>
+            <ul>
+                <li><a href="#">home</a>
+                    <ul>
+                        <li><a href="login.phtml">LOGIN</a></li>
+                        <li><a href="new_account.phtml">SIGN UP</a></li>
+                    </ul>
+                </li>
+                    <?php
+                    if ($_SESSION['user'])
+                        echo 
+                            '<li><a href="#">account</a>
+                            <ul>
+                                <li><a href="#">profile</a></li>
+                                <li><a href="#">setings</a></li>
+                                <li><a href="forgot_password.phtml">password reset</a></li>
+                            </ul>        
+                            </li>'.
+                            '<li><a href="home.phtml">my studio</a>';
+                    ?>
+                </li>
+                <li><a href="#">Inspiration</a></li>
+                <li><a href="#">Contact</a></li>
+                <?php if(isset($_SESSION) && $_SESSION['user']) echo "<li id='logout' onclick='remove()'><a style='background-color:white;cursor:pointer'>LOGOUT</a></li>" ?>
+            </ul>
+        </nav>
+    </div>
     <article>
         <div class="photo_type">
             asdfadsda
@@ -98,68 +100,87 @@
             </div>
             <div class="two">
                 <div id="comments"><br>
-                    
-                    
                 </div>
-                <p>comment here:</p>
+                <p style >comment here:</p>
                 <textarea name="comment_text" id="comment_text" cols="30" rows="6"></textarea>
                 <button id="send">sfsdf</button>
+                <button id='like_button'>
+                    <span id='like_id'>
+                    </span>
+                    like
+                </button>
             </div>
             <img onclick="cancel(this)" id="cancel" src="./images/cancel.png" alt="">
         </div>
     </article>
-     <script>
+    <script>
+        function replaceQueryParam(param, newval, search) {
+            var regex = new RegExp("([?;&])" + param + "[^&;]*[;&]?");
+            var query = search.replace(regex, "$1").replace(/&$/, '');
 
-            function replaceQueryParam(param, newval, search) {
-                var regex = new RegExp("([?;&])" + param + "[^&;]*[;&]?");
-                var query = search.replace(regex, "$1").replace(/&$/, '');
+            return (query.length > 2 ? query + "&" : "?") + (newval ? param + "=" + newval : '');
+        }
 
-                return (query.length > 2 ? query + "&" : "?") + (newval ? param + "=" + newval : '');
+        function commentUpdate(id_value) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'test.php?id=' + id_value, true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText);
+                    b = xhr.responseText + "";
+                    b.replace(/<&#91;^>&#93;*>/g, "");
+                    document.getElementById('comments').innerHTML = b;
+                }
             }
-
-            function commentUpdate(id_value) {
-                var xhr = new XMLHttpRequest();
-                    xhr.open('GET', 'test.php?id=' + id_value, true);
-                    xhr.setRequestHeader('Content-type','application/json');
-                    xhr.onreadystatechange = function() {
-                        if( xhr.readyState == 4 && xhr.status == 200) {
-                            console.log(xhr.responseText);
-                            b=xhr.responseText + "";
-                            b.replace(/<&#91;^>&#93;*>/g, "");
-                            document.getElementById('comments').innerHTML = b;
-                        }
-                    }
-                    xhr.send();
-            }
+            xhr.send();
+        }
 
 
-         window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             var images = document.getElementsByClassName('imge');
-                preview = document.getElementById('preview');
+            preview = document.getElementById('preview');
             var b;
             for (var i = 0; i < images.length; i++) {
-                images[i].addEventListener('click', function(e){
+                images[i].addEventListener('click', function (e) {
                     preview.setAttribute('style', 'display:flex');
                     document.getElementById('preview_pic').setAttribute('src', this.firstChild.src);
                     document.getElementById('preview_pic').setAttribute('alt', this.firstChild.id);
                     commentUpdate(this.firstChild.id);
+                    var json = {
+                        id: this.firstChild.id,
+                        liked: 0
+                    }
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'like.php', true);
+                    xhr.setRequestHeader('Content-type', 'application/json');
+                    xhr.onreadystatechange = function (data) {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            console.log(xhr.responseText);
+                            b = xhr.responseText + "";
+                            b.replace(/<&#91;^>&#93;*>/g, "");
+                            document.getElementById('like_id').innerHTML = '';
+                            document.getElementById('like_id').innerHTML = b;
+                        }
+                    }
+                    xhr.send(JSON.stringify(json))
                 });
             }
 
             document.getElementById('send').addEventListener('click', function () {
                 var text = document.getElementById('comment_text').value.trim();
                 if (text != '') {
-                    var json = {id: document.getElementById('preview_pic').alt,
-                                comment: text,
-                                madeby: '<?php echo $useranme; ?>'
-                            }
+                    var json = {
+                        id: document.getElementById('preview_pic').alt,
+                        comment: text,
+                        madeby: '<?php echo $useranme; ?>'
+                    }
                     var xhr = new XMLHttpRequest();
                     xhr.open('POST', 'comments.php', true);
-                    xhr.setRequestHeader('Content-type','application/json');
-                    xhr.onreadystatechange = function(data) {
-                        if( xhr.readyState == 4 && xhr.status == 200) {
-                            console.log(xhr.responseText
-                            );
+                    xhr.setRequestHeader('Content-type', 'application/json');
+                    xhr.onreadystatechange = function (data) {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            console.log(xhr.responseText);
                         }
                     }
                     xhr.send(JSON.stringify(json))
@@ -168,62 +189,81 @@
                 // commentUpdate(document.getElementById('preview_pic').id);
             });
 
-            function getImagesForward(val, how_many) {
-                var json = {step: val}
+            document.getElementById('like_button').addEventListener('click', function () {
+                    var json = {
+                        id: document.getElementById('preview_pic').alt,
+                        liked: 1
+                    }
                     var xhr = new XMLHttpRequest();
-                    xhr.open('POST', 'get_pictures.php', true);
-                    xhr.setRequestHeader('Content-type','application/json');
-                    xhr.onreadystatechange = function(data) {
-                        if( xhr.readyState == 4 && xhr.status == 200) {
+                    xhr.open('POST', 'like.php', true);
+                    xhr.setRequestHeader('Content-type', 'application/json');
+                    xhr.onreadystatechange = function (data) {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
                             console.log(xhr.responseText);
-                            b=xhr.responseText + "";
+                            b = xhr.responseText + "";
                             b.replace(/<&#91;^>&#93;*>/g, "");
-                            document.getElementById('grid').innerHTML = '';
-                            document.getElementById('grid').innerHTML = b;
+                            document.getElementById('like_id').innerHTML = '';
+                            document.getElementById('like_id').innerHTML = b;
                         }
                     }
                     xhr.send(JSON.stringify(json))
+            });
+
+            function getImagesForward(val, how_many) {
+                var json = {
+                    step: val
+                }
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'get_pictures.php', true);
+                xhr.setRequestHeader('Content-type', 'application/json');
+                xhr.onreadystatechange = function (data) {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        console.log(xhr.responseText);
+                        b = xhr.responseText + "";
+                        b.replace(/<&#91;^>&#93;*>/g, "");
+                        document.getElementById('grid').innerHTML = '';
+                        document.getElementById('grid').innerHTML = b;
+                    }
+                }
+                xhr.send(JSON.stringify(json))
             }
-            document.getElementById('next').addEventListener('click', function(){
+            document.getElementById('next').addEventListener('click', function () {
                 var howm = '<?php echo $_SESSION['start'] ?>';
                 getImagesForward(1, howm);
             });
-            document.getElementById('prev').addEventListener('click', function(){
+            document.getElementById('prev').addEventListener('click', function () {
                 var howm = '<?php echo $_SESSION['start'] ?>';
                 getImagesForward(0, howm);
             });
-         });
+        });
 
-         function comms(e) {
-                var preview = document.getElementById('preview');
-                preview.setAttribute('style', 'display:flex');
-                document.getElementById('preview_pic').setAttribute('src', e.src);
-                document.getElementById('preview_pic').setAttribute('alt', e.id);
-                commentUpdate(e.id);
-         }
-         
+        function comms(e) {
+            var preview = document.getElementById('preview');
+            preview.setAttribute('style', 'display:flex');
+            document.getElementById('preview_pic').setAttribute('src', e.src);
+            document.getElementById('preview_pic').setAttribute('alt', e.id);
+            commentUpdate(e.id);
+        }
 
-         function cancel(x) {
+
+        function cancel(x) {
             var win = document.getElementById('preview');
 
             win.setAttribute('style', 'display:none');
-         }
-         function remove() {
-             location.href = 'logout.php';
-         }
+        }
 
-        //  document.getElementById('butt').addEventListener('click', function() {
-        //     //  window.alert('sdsdsd');
-        //      document.getElementById('butt').classList.toggle("liked");
-        //  });
-        window.addEventListener('mousedown', function() {
+        function remove() {
+            location.href = 'logout.php';
+        }
+        window.addEventListener('mousedown', function () {
             var bye = document.getElementById('bye');
-            if(bye){
+            if (bye) {
                 bye.parentNode.removeChild(bye);
                 var url = window.location.href.replace("?bye=good%20bye", "");
                 window.history.pushState(null, null, url);
             }
         });
-     </script>
+    </script>
 </body>
+
 </html>

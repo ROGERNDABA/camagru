@@ -29,46 +29,49 @@
     }
 ?>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
-        <link rel="icon" href="./images/camagru.png" type="image/x-icon">
-        <link rel="stylesheet" href="login.css">
-        <title>Login</title>
-    </head>
-    <body>
-        
-        <div class="login_class">
-            <div class="login_container">
-                    <form id='index' action='login.php' method='post' accept-charset='UTF-8' autocomplete="off">
-                    <span class="error_msg" id="error">
-                            <?php
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <link rel="icon" href="./images/camagru.png" type="image/x-icon">
+    <link rel="stylesheet" href="login.css">
+    <title>Login</title>
+</head>
+
+<body>
+
+    <div class="login_class">
+        <div class="login_container">
+            <form id='index' action='login.php' method='post' accept-charset='UTF-8' autocomplete="off">
+                <span class="error_msg" id="error">
+                    <?php
                             $msg = base64_decode($_GET['msg']);
                             if(isset($_GET['msg']))
                                 echo $msg;
                             unset($_GET['msg']);
                             ?>
-                       </span>
-                       <span class="verify">
-                            <?php
-                            $msg = base64_decode($_GET['msgv']);
-                            if(isset($_GET['msgv']))
-                                echo $msg;
-                            unset($_GET['msgv']);
-                            ?>
-                       </span>
-                       <input type='hidden' name='submitted' id='submitted' value='1'/>
-                       <input type='text' name='login' id='login'  maxlength="500" placeholder="username or email"/><br>
-                       <input type='password' name='passwd' id='passwd' maxlength="50" placeholder="password" oninput="validatePassword(this)"/><br>
-                       
-                       <input type='submit' name='submit' value='sign in'/>      
-                    </form>
-                    <a class="create_account" href="new_account.phtml" style="color:#579ff1">new account</a>
-                    <br>
-                    <a class="create_account" href="forgot_password.phtml" style="color:#4e5259">forgot password :(</a>
-            </div>
+                </span>
+                <span class="verify">
+                    <?php
+                        $msg = base64_decode($_GET['msgv']);
+                        if(isset($_GET['msgv']))
+                            echo $msg;
+                        unset($_GET['msgv']);
+                    ?>
+                </span>
+                <input type='hidden' name='submitted' id='submitted' value='1' />
+                <input type='text' name='login' id='login' maxlength="500" placeholder="username or email" /><br>
+                <input type='password' name='passwd' id='passwd' maxlength="50" placeholder="password" oninput="validatePassword(this)" /><br>
+
+                <input type='submit' name='submit' value='sign in' />
+            </form>
+            <a class="create_account" href="new_account.phtml" style="color:#579ff1">new account</a>
+            <br>
+            <a class="create_account" href="forgot_password.phtml" style="color:#4e5259">forgot password :(</a>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>

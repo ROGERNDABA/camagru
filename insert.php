@@ -19,19 +19,12 @@
     $dw    =intval($_POST['dw']);
     $d      = str_replace("data:image/png;base64,","",$_POST['dst']);
 
-    print_r($_POST);
     $src = imagecreatefromstring(resizeImage($s, $sw,$sh));
-    $dst = imagecreatefromstring(resizeImage( $_POST['dst'], $dw, $dh)); 
-    // $data = base64_decode($d);
-    // $src = imagecreatefrompng('./tmp/temp.png');
-    // $dst = imagecreatefrompng('./tmp/temp1.png');
-
-    // echo intval(imagesx($_POST['src']))."\n";
+    $dst = imagecreatefromstring(resizeImage( $_POST['dst'], $dw, $dh));
     imagecopyresampled($dst, $src, $sx, $sy, 0, 0,  imagesx($src), imagesy($src), imagesx($src), imagesy($src));
-    imagepng($dst, './supp.png');
     ob_start();
         imagepng($dst);
-    $img_data = ob_get_contents();
+        $img_data = ob_get_contents();
     ob_end_clean();
     
     $conn = conOpen();
@@ -49,6 +42,5 @@
                         );
 
     imagedestroy($dst);
-    header('location: home.phtml');
     
     ?>

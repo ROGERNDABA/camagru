@@ -73,22 +73,25 @@ textarea {
       width: 30px;
       height: 30px;
       cursor: pointer;
+      background: black;
   }
 
 
 .one {
     padding: 20px;
     width: 500px;
-    background-color: violet;
+    background-color: black;
+    border-right: 2px solid #579ff1;
 }
 
 .two {
     padding: 10px;
     width: 450px;
-    background-color: teal;
+    background-color: black;
 }
 
 #preview {
+    border: 1px solid #579ff1;
     position: absolute;
     top: 0;
     margin: 0 auto;
@@ -149,5 +152,9 @@ hr {
 
     .buttons_container {
         height: 50px;
+    }
+
+    #preview {
+        width: 100%;
     }
 }
