@@ -89,8 +89,6 @@ document.getElementById("save").addEventListener("click", function () {
              console.log(response);
          }  
         })
-
-        document.getElementById('re').innerHTML = toto;
         issaved = loopFrame;
     }
 
@@ -119,14 +117,6 @@ function loop() {
     ctx.drawImage(video, 0, 0, width, height);
     loopFrame = requestAnimationFrame(loop);
 }
-
-// document.getElementById("download").addEventListener("click", function() {
-//     var img = document.getElementById("temp"),
-//     a = document.getElementById("down");
-//     a.setAttribute("download", "YourFileName.png");
-//     a.setAttribute("href", img.src);
-// });
-
 
     document.addEventListener('input', function(){
         myFunc();

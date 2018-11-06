@@ -18,6 +18,14 @@ body {
     z-index: -1;
 }
 
+.rights {
+    position: absolute;
+    color: #579FF1;
+    /* float: right; */
+    top: 0;
+    right: 10px;
+}
+
 .mySlides {
     width: 20%;
     height: 25%;
@@ -219,6 +227,7 @@ aside {
 }
 
 footer {
+    position: relative;
     padding: 20px;
     grid-area: footer;
     border: 2px solid #579FF1;

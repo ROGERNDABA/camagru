@@ -86,7 +86,9 @@
         </aside>
 
 <footer>
-    <div style="color:aliceblue">dsfsdffsdf</div>
+    <div style="color:aliceblue">
+        <p class="rights">© rogerndaba 2018</p><br>
+    </div>
 </footer>  
 
         <article>
@@ -115,8 +117,8 @@
                         <button class="filter_buttons" onclick="reset(); myFunc();">RESET</button>
                     </div>
             </div>
-            <input type="file" name="image" id='imageLoader'>
-            <input type="file" accept="video/*" capture>
+            <label for="imageLoader" style='border: 2px solid black; padding:10px'>Upload Image</label>
+            <input type="file" name="image" id='imageLoader' style="visibility:hidden;">
             <p id="re"></p>
         </article>
     </div>
