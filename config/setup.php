@@ -27,7 +27,7 @@
             }
             $this->_conn = false;
             try {
-                $this->_conn = new PDO("mysql:host=localhost;", 'root', $password);
+                $this->_conn = new PDO("mysql:host=localhost;port=3307", 'root', $password);
                 $this->_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch(PDOException $e) {
                 echo "Connection failed: " . $e->getMessage();
